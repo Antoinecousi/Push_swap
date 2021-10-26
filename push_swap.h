@@ -43,7 +43,28 @@ typedef struct      p_coor
     int     upperMed;
 }                   p_coor;
 
-int     nbr_inter(int *tab, int *bubbled, int last);
+int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int    ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int     ft_backwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int     ft_direction_after_inter(int *tab, int inter, int final);
+int     ft_inter_calcul_backward(int *tab, int i, int j);
+int     ft_inter_calcul_forward(int *tab, int i, int j);
+int     *ft_reverse_tab(int *tab);
+void    do_ra(dblist *dbla, dblist *dblb);
+void    do_rra(dblist *dbla, dblist *dblb);
+void    do_rb(dblist *dbla, dblist *dblb);
+void    do_rrb(dblist *dbla, dblist *dblb);
+void    do_pb(dblist *dbla, dblist *dblb);
+void    do_pa(dblist *dbla, dblist *dblb);
+void    do_rrr(dblist *dbla, dblist *dblb);
+void    do_rr(dblist *dbla, dblist *dblb);
+void    do_ss(dblist *dbla, dblist *dblb);
+void    do_sa(dblist *dbla, dblist *dblb);
+void    do_sb(dblist *dbla, dblist *dblb);
+int     ft_next_lower_bis(int *tab, int c);
+int     nbr_inter_forward(int *tab, int *bubbled, int last, int totInter);
+int     nbr_inter_backward(int *tab, int *bubbled, int last, int totInter);
 int     ft_intermed_lower(int *tab, int *bubbled);
 int     size_array(int *tab);
 void    display_tab(int *tab);
@@ -66,6 +87,8 @@ int     ft_get_med(int *tab);
 int     ft_isnumber(char *argv);
 int     ft_istoohigh(char *argv);
 int     ft_error();
+int     ft_next_upper(int *tab);
+i_coor  init_ins(i_coor ins);
 int     ft_checker(char **argv, int argc);
 void    ft_addbacklist(dblist *dbla, int val);
 void    ft_addfrontlist(dblist *dbla, int val);
@@ -82,5 +105,6 @@ void    ft_rr(dblist *dbla, dblist *dblb);
 void    ft_rra(dblist *dbla);
 void    ft_rrb(dblist *dbla);
 void    ft_rrr(dblist *dbla, dblist *dblb);
+int     *ft_reverse_bubble(int *tab);
 
 #endif
