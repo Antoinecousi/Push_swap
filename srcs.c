@@ -6,11 +6,32 @@
 /*   By: acousini <acousini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:16:43 by acousini          #+#    #+#             */
-/*   Updated: 2021/10/26 18:05:35 by acousini         ###   ########.fr       */
+/*   Updated: 2021/10/26 19:49:21 by acousini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int     ft_next_seeked(int *tab, int c)
+{
+    int     i;
+    int     pos;
+    int     lol;
+
+    i = 0;
+    pos = -1;
+    while (tab[i])
+    {
+        if (tab[i] == c)
+            pos = i;
+        i++;
+    }
+    // printf("RESULTAT DU NEXT UPPPER : %d \n", i / pos);
+    if (!pos)
+        return (0);
+    printf("prochain pos de lower : %d      donc i / pos = %d \n", pos, i / pos);
+return (i / pos);
+}
 
 int     ft_next_lower(int *tab)
 {
@@ -21,6 +42,7 @@ int     ft_next_lower(int *tab)
 
     i = 0;
     lower = INT_MAX;
+    pos = -1;
     while (tab[i])
     {
         if (tab[i] < lower)
@@ -68,14 +90,28 @@ int     ft_next_upper(int *tab)
 int     ft_next_lower_bis(int *tab, int c)
 {
     int     i;
+    int     lower;
+    int     pos;
+    int     lol;
 
     i = 0;
-    while (tab[i] != c)
+    pos = -1;
+    lower = INT_MAX;
+    while (tab[i])
+    {
+        if (tab[i] < lower)
+        {
+            lower = tab[i];
+            pos = i;
+        }
         i++;
-    if (i < size_array(tab) / 2)
-        return (1);
-    else 
+    }
+    printf("prochain lower : %d \n", lower);
+    // printf("RESULTAT DU NEXT UPPPER : %d \n", i / pos);
+    if (!pos)
         return (0);
+return (i / pos);
+
 }
 
 int     ft_get_tier(int *tab)

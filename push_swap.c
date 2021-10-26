@@ -11,17 +11,20 @@ int     ft_take_inter(int *tab, int inter, int final)
     j = 0;
     reader = 0;
     size = size_array(tab) / 2;
+    printf("VALEURS INTER : %d  VALEUR FINAL : %d\n", inter, final);
     while (tab[i++] != inter)
     {
     }
     while (tab[j++] != final)
     {
     }
-    if (i > size)
-        reader = ft_inter_calcul_backward(tab, i, j);
-    if (i <= size)
-        reader = ft_inter_calcul_forward(tab, i, j);
+    printf("POSITION INTER : %d  POSITION FINAL : %d\n", i - 1, j - 1);
+    if (j - 1 > size)
+        reader = ft_inter_calcul_backward(tab, i - 1, j - 1);
+    if (j - 1 <= size)
+        reader = ft_inter_calcul_forward(tab, i - 1, j - 1);
     // if (size / 2 - i > j)
+    printf("MON READER EST A %d   MON SIZE A %d\n", reader, size);
     return (reader);
 }
 
@@ -91,9 +94,9 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
         }
         else if (!ft_take_inter(list_to_array(dbla), c[1], c[0]))
         {
-            while (dbla->first->content != c[0] && ft_next_upper(list_to_array(dbla)) >= 1)
+            while (dbla->first->content != c[0] && ft_next_seeked(list_to_array(dbla), c[0]) > 1)
                 do_ra(dbla, dblb);
-            while (dblb->first->content != c[0] && ft_next_upper(list_to_array(dbla)) < 1)
+            while (dbla->first->content != c[0] && ft_next_seeked(list_to_array(dbla), c[0]) <= 1)
                 do_rra(dbla, dblb);
             do_pb(dbla, dblb);
         }
@@ -108,18 +111,22 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
                 printf("END OF FORWARD A\n");
             }
             else 
+            
             {
                 printf("ENTERING BACKWARD A : \n");
                 int     b = ft_backwardA(dbla, dblb, c, c[0], 0, 1, ft_next_lower(list_to_array(dbla)));
                 while (--b)
+                
                     do_rrb(dbla, dblb);
                 printf("END OF BACKWARD A\n");
             }
         }
+        
     }
     while (i-- > 1)
         do_pa(dbla, dblb);
     i = 0;
+    
     while (dblb->first)
     {
         c = ft_reverse_bubble(list_to_array(dblb));
@@ -144,18 +151,22 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
                 printf("END OF FORWARD B\n");
             }
             else
+            
             {
                 printf("ENTERING BACKWARD B : \n");
                 int     b = ft_backwardB(dbla, dblb, c, c[0], 0, 1, ft_next_upper(list_to_array(dblb)));
                 while (--b)
+                
                     do_rra(dbla, dblb);
                 printf("END OF BACKWARD B\n");
             }
         }
+        
     }
     while (dblb->first)
         do_pa(dbla, dblb);
     display_lists(dbla, dblb);
+    
     free(a);
     free(b);
 }
@@ -308,38 +319,8 @@ int     main(int argc, char **argv)
     while (b)
     {
         // printf("%d ", b->content);
+        
         b = b->next;
     }
     return (0);
 }
-
-// int     ft_intermed_second(int *tab, int *bubbled, int final, int max)
-// {
-//     int     i = 0;
-//     int     posInterm = 0;
-//     int     wesh = 0;
-
-
-//     while (tab[i] != final)
-//     {
-//         if (tab[i] == bubbled[1])
-//             posInterm = i + 1;
-//         i++;
-//     }
-//     if (posInterm == 0)
-//     {
-//         int     size = size_array(bubbled);
-//         while (tab[size - wesh] != final)
-//         {
-//             if (tab[size - wesh] == bubbled[1])
-//                 posInterm = (wesh * (-1)) - 1;
-//             wesh++;
-//         }
-//     }
-//     printf(" /////////////////////// TU RETOURNES QUOI FDP : %d \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \n", posInterm);
-//     if (posInterm < i - max && posInterm > 0)
-//         return (posInterm);
-//     if ((-1) * posInterm < i - max && posInterm < 0)
-//         return (posInterm);
-//     return (0);
-// }

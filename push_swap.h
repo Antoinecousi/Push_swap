@@ -43,13 +43,14 @@ typedef struct      p_coor
     int     upperMed;
 }                   p_coor;
 
-int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
-int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
-int    ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int     ft_next_seeked(int *tab, int c);
+int     ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int     ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int     ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
 int     ft_backwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
 int     ft_direction_after_inter(int *tab, int inter, int final);
-int     ft_inter_calcul_backward(int *tab, int i, int j);
-int     ft_inter_calcul_forward(int *tab, int i, int j);
+int     ft_inter_calcul_backward(int *tab, int inter, int final);
+int     ft_inter_calcul_forward(int *tab, int inter, int final);
 int     *ft_reverse_tab(int *tab);
 void    do_ra(dblist *dbla, dblist *dblb);
 void    do_rra(dblist *dbla, dblist *dblb);

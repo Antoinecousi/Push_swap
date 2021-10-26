@@ -9,7 +9,7 @@ int     ft_inter_calcul_backward(int *tab, int inter, int final)
         return (0);
     if (inter - 1 > final)
         return (1);
-    else if (size - final- inter + 1 >= 1 && 2 * size - 3 * final+ inter - 1 >= 1)
+    else if (size - final- inter + 1 >= 1 && 2 * size - 3 * final + inter - 1 >= 1)
         return (1);
     else if (final - 3 * inter - 1 >= 1 && size - inter - final- 2 >= 1)
         return (1);
@@ -31,12 +31,13 @@ int     ft_inter_calcul_backward(int *tab, int inter, int final)
 //                            = i - 3 * j - 1;
 // // i > j chan - j > i chan = 2 * size - (2 * i) + j + 1 - (2 * j) - size + i - 3;
 //                            = size - j - i - 2;
-  
 int     ft_inter_calcul_forward(int *tab, int inter, int final)
 {
     int     size;
 
     size = size_array(tab);
+    printf("VALEURS INTER : %d \n VALEUR FINAL : %d\n", inter, final);
+    printf("VOICI LES VALEURS %d \n %d \n %d \n %d \n",inter + final - size - 2, 3 * final - inter - 1, final - size + inter, 3 * inter - 2 * size - final - 1);
     if (inter < final)
         return (1);
     else if (inter + final - size - 2 >= 1 && 3 * final - inter - 1 >= 1)

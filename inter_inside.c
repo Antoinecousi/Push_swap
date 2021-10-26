@@ -5,12 +5,11 @@ int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final,
     int     i = 1;
 
     lol++;
-    while (dbla->first->content != tab[1] && ft_next_lower_bis(list_to_array(dbla), tab[1]))
-        do_ra(dbla, dblb);
-    while (dbla->first->content != tab[1] && !ft_next_lower_bis(list_to_array(dbla), tab[1]))
+    while (dbla->first->content != tab[1] && ft_next_seeked(list_to_array(dbla), tab[1]))
         do_rra(dbla, dblb);
-    if (dbla->first->content == tab[1])
-        do_pb(dbla, dblb);
+    while (dbla->first->content != tab[1] && !ft_next_seeked(list_to_array(dbla), tab[1]))
+        do_ra(dbla, dblb);
+    do_pb(dbla, dblb);
     tab = ft_bubble(list_to_array(dbla));
     if ((dir = nbr_inter_forward(list_to_array(dbla), tab, final, lol - 1)) > 0)
         i = ft_recursiveShitForwardA(dbla, dblb, tab, final, lol, dir, total);
@@ -34,12 +33,11 @@ int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, in
     int     i = 1;
 
     lol++;
-    while (dbla->first->content != tab[1] && ft_next_lower_bis(list_to_array(dbla), tab[1]))
-        do_ra(dbla, dblb);
-    while (dbla->first->content != tab[1] && !ft_next_lower_bis(list_to_array(dbla), tab[1]))
+    while (dbla->first->content != tab[1] && ft_next_seeked(list_to_array(dbla), tab[1]))
         do_rra(dbla, dblb);
-    if (dbla->first->content == tab[1])
-        do_pb(dbla, dblb);
+    while (dbla->first->content != tab[1] && !ft_next_seeked(list_to_array(dbla), tab[1]))
+        do_ra(dbla, dblb);
+    do_pb(dbla, dblb);
     tab = ft_bubble(list_to_array(dbla));
     if ((dir = nbr_inter_backward(list_to_array(dbla), tab, final, lol - 1)) > 0)
         i = ft_backwardA(dbla, dblb, tab, final, lol, dir, total);
@@ -63,9 +61,9 @@ int    ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int
     int     i = 1;
 
     lol++;
-    while (dblb->first->content != tab[1] && ft_next_lower_bis(list_to_array(dblb), tab[1]))
+    while (dblb->first->content != tab[1] && ft_next_seeked(list_to_array(dblb), tab[1]))
         do_rb(dbla, dblb);
-    while (dblb->first->content != tab[1] && !ft_next_lower_bis(list_to_array(dblb), tab[1]))
+    while (dblb->first->content != tab[1] && !ft_next_seeked(list_to_array(dblb), tab[1]))
         do_rrb(dbla, dblb);
     if (dblb->first->content == tab[1])
         do_pb(dbla, dblb);
@@ -74,9 +72,9 @@ int    ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int
         i = ft_forwardB(dbla, dblb, tab, final, lol, dir, total);
     else
     {
-        while (dblb->first->content != tab[0] && ft_next_lower_bis(list_to_array(dblb), tab[0]))
+        while (dblb->first->content != tab[0] && ft_next_seeked(list_to_array(dblb), tab[1]))
             do_rb(dbla, dblb);
-        while (dblb->first->content != tab[0] && !ft_next_lower_bis(list_to_array(dblb), tab[0]))
+        while (dblb->first->content != tab[0] && !ft_next_seeked(list_to_array(dblb), tab[1]))
             do_rrb(dbla, dblb);        
         do_pa(dbla, dblb);
     }
@@ -94,9 +92,9 @@ int    ft_backwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, in
     int     i = 1;
 
     lol++;
-    while (dblb->first->content != tab[1] && ft_next_lower_bis(list_to_array(dblb), tab[1]))
+    while (dblb->first->content != tab[1] && ft_next_lower(list_to_array(dblb)))
         do_ra(dbla, dblb);
-    while (dblb->first->content != tab[1] && !ft_next_lower_bis(list_to_array(dblb), tab[1]))
+    while (dblb->first->content != tab[1] && !ft_next_lower(list_to_array(dblb)))
         do_rra(dbla, dblb);
     if (dblb->first->content == tab[1])
         do_pb(dbla, dblb);
