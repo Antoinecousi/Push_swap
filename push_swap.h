@@ -44,10 +44,10 @@ typedef struct      p_coor
 }                   p_coor;
 
 int     ft_next_seeked(int *tab, int c);
-int     ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
-int     ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
-int     ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
-int     ft_backwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total);
+int     ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol);
+int     ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol);
+int     ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol);
+int     ft_backwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol);
 int     ft_direction_after_inter(int *tab, int inter, int final);
 int     ft_inter_calcul_backward(int *tab, int inter, int final);
 int     ft_inter_calcul_forward(int *tab, int inter, int final);

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total)
+int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol)
 {
     int     i = 1;
 
@@ -11,8 +11,8 @@ int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final,
         do_ra(dbla, dblb);
     do_pb(dbla, dblb);
     tab = ft_bubble(list_to_array(dbla));
-    if ((dir = nbr_inter_forward(list_to_array(dbla), tab, final, lol - 1)) > 0)
-        i = ft_recursiveShitForwardA(dbla, dblb, tab, final, lol, dir, total);
+    if ((nbr_inter_forward(list_to_array(dbla), tab, final, lol - 1)) > 0)
+        i = ft_recursiveShitForwardA(dbla, dblb, tab, final, lol);
     else
     {
         while (dbla->first->content != final)
@@ -28,7 +28,7 @@ int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final,
     return (i);
 }
 
-int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total)
+int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol)
 {
     int     i = 1;
 
@@ -39,8 +39,8 @@ int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, in
         do_ra(dbla, dblb);
     do_pb(dbla, dblb);
     tab = ft_bubble(list_to_array(dbla));
-    if ((dir = nbr_inter_backward(list_to_array(dbla), tab, final, lol - 1)) > 0)
-        i = ft_backwardA(dbla, dblb, tab, final, lol, dir, total);
+    if ((nbr_inter_backward(list_to_array(dbla), tab, final, lol - 1)) > 0)
+        i = ft_backwardA(dbla, dblb, tab, final, lol);
     else
     {
         while (dbla->first->content != final)
@@ -56,26 +56,26 @@ int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol, in
     return (i);
 }
 
-int    ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total)
+int    ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol)
 {
     int     i = 1;
 
     lol++;
-    while (dblb->first->content != tab[1] && ft_next_seeked(list_to_array(dblb), tab[1]))
+    while (dblb->first->content != tab[1] && ft_next_seeked(list_to_array(dblb), tab[1]) > 1)
         do_rb(dbla, dblb);
-    while (dblb->first->content != tab[1] && !ft_next_seeked(list_to_array(dblb), tab[1]))
+    while (dblb->first->content != tab[1] && ft_next_seeked(list_to_array(dblb), tab[1]) <= 1)
         do_rrb(dbla, dblb);
     if (dblb->first->content == tab[1])
-        do_pb(dbla, dblb);
+        do_pa(dbla, dblb);
     tab = ft_reverse_bubble(list_to_array(dblb));
-    if ((dir = nbr_inter_forward(list_to_array(dblb), tab, final, lol - 1)) > 0)
-        i = ft_forwardB(dbla, dblb, tab, final, lol, dir, total);
+    if (nbr_inter_forward(list_to_array(dblb), tab, final, lol - 1) > 0)
+        i = ft_forwardB(dbla, dblb, tab, final, lol);
     else
     {
-        while (dblb->first->content != tab[0] && ft_next_seeked(list_to_array(dblb), tab[1]))
+        while (dblb->first->content != tab[0] && ft_next_seeked(list_to_array(dblb), tab[0]) > 1)
             do_rb(dbla, dblb);
-        while (dblb->first->content != tab[0] && !ft_next_seeked(list_to_array(dblb), tab[1]))
-            do_rrb(dbla, dblb);        
+        while (dblb->first->content != tab[0] && ft_next_seeked(list_to_array(dblb), tab[0]) <= 1)
+            do_rrb(dbla, dblb);
         do_pa(dbla, dblb);
     }
     do_sa(dbla, dblb);
@@ -87,24 +87,26 @@ int    ft_forwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int
     return (i);
 }
 
-int    ft_backwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol, int dir, int total)
+int    ft_backwardB(dblist *dbla, dblist *dblb, int *tab, int final, int lol)
 {
     int     i = 1;
 
     lol++;
-    while (dblb->first->content != tab[1] && ft_next_lower(list_to_array(dblb)))
-        do_ra(dbla, dblb);
-    while (dblb->first->content != tab[1] && !ft_next_lower(list_to_array(dblb)))
-        do_rra(dbla, dblb);
+    while (dblb->first->content != tab[1] && ft_next_seeked(list_to_array(dblb), tab[1]) > 1)
+        do_rb(dbla, dblb);
+    while (dblb->first->content != tab[1] && ft_next_seeked(list_to_array(dblb), tab[1]) <= 1)
+        do_rrb(dbla, dblb);
     if (dblb->first->content == tab[1])
-        do_pb(dbla, dblb);
+        do_pa(dbla, dblb);
     tab = ft_reverse_bubble(list_to_array(dblb));
-    if ((dir = nbr_inter_backward(list_to_array(dblb), tab, final, lol - 1)) > 0)
-        i = ft_backwardB(dbla, dblb, tab, final, lol, dir, total);
+    if (nbr_inter_backward(list_to_array(dblb), tab, final, lol - 1) > 0)
+        i = ft_backwardB(dbla, dblb, tab, final, lol);
     else
     {
-        while (dblb->first->content != final)
-            do_rrb(dbla, dblb);
+        while (dblb->first->content != tab[0] && ft_next_seeked(list_to_array(dblb), tab[0]) > 1)
+            do_rb(dbla, dblb);
+        while (dblb->first->content != tab[0] && ft_next_seeked(list_to_array(dblb), tab[0]) <= 1)
+            do_rrb(dbla, dblb);   
         do_pa(dbla, dblb);
     }
     do_sa(dbla, dblb);

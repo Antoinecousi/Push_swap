@@ -17,20 +17,6 @@ int     ft_inter_calcul_backward(int *tab, int inter, int final)
         return (0);
 }
 
-// // pour backward (i > moitié)
-// // i > j back = size - j + 2; 
-// // i > j chan = 2 * (size - i) + j + 1;
-// // j > i forw = i + 2;
-// // j > i chan = 2 * j + (size - i) + 3;
-
-// // i > j back - j > i forw = size - j + 2 - i - 1;
-//                            = size - i - j + 1;
-// // i > j chan - j > i forw = 2 * (size - i) + j + 1 - i - 1;
-//                            = 2 * size - 3 * i + j - 1;
-// // i > j back - j > i chan = size - j + 2 - 2 j - size + i - 3;
-//                            = i - 3 * j - 1;
-// // i > j chan - j > i chan = 2 * size - (2 * i) + j + 1 - (2 * j) - size + i - 3;
-//                            = size - j - i - 2;
 int     ft_inter_calcul_forward(int *tab, int inter, int final)
 {
     int     size;
@@ -63,6 +49,21 @@ int     ft_inter_calcul_forward(int *tab, int inter, int final)
 // // i > j chan - j > i chan = 2 * i + (size - j) + 2 - (2 * size) + (2 * j) - i - 2;
 //                            = i - size + j;
 
+// // pour backward (i > moitié)
+// // i > j back = size - j + 2; 
+// // i > j chan = 2 * (size - i) + j + 1;
+// // j > i forw = i + 2;
+// // j > i chan = 2 * j + (size - i) + 3;
+
+// // i > j back - j > i forw = size - j + 2 - i - 1;
+//                            = size - i - j + 1;
+// // i > j chan - j > i forw = 2 * (size - i) + j + 1 - i - 1;
+//                            = 2 * size - 3 * i + j - 1;
+// // i > j back - j > i chan = size - j + 2 - 2 j - size + i - 3;
+//                            = i - 3 * j - 1;
+// // i > j chan - j > i chan = 2 * size - (2 * i) + j + 1 - (2 * j) - size + i - 3;
+//                            = size - j - i - 2;
+
 int     ft_direction_after_inter(int *tab, int inter, int final)
 {
     int     index;
@@ -80,7 +81,12 @@ int     ft_direction_after_inter(int *tab, int inter, int final)
         index++;
     }
     if ((inter < final && final - inter <= size / 2) || (final < inter && inter - final > size / 2))
+    {
+        printf("Direction is ra after\n");
         return (1);
+    }
     else
+    {
         return (0);
+    }
 }

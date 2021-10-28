@@ -105,28 +105,25 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             if (ft_direction_after_inter(list_to_array(dbla), c[1], c[0]) >= 1)
             {
                 printf("ENTERING FORWARD A : \n");
-                int     b = ft_recursiveShitForwardA(dbla, dblb, c, c[0], 0, 1, ft_next_lower(list_to_array(dbla)));
+                int     b = ft_recursiveShitForwardA(dbla, dblb, c, c[0], 0);
                 while (--b)
                     do_rrb(dbla, dblb);
                 printf("END OF FORWARD A\n");
             }
             else 
-            
             {
                 printf("ENTERING BACKWARD A : \n");
-                int     b = ft_backwardA(dbla, dblb, c, c[0], 0, 1, ft_next_lower(list_to_array(dbla)));
+                int     b = ft_backwardA(dbla, dblb, c, c[0], 0);
                 while (--b)
                 
                     do_rrb(dbla, dblb);
                 printf("END OF BACKWARD A\n");
             }
         }
-        
     }
     while (i-- > 1)
         do_pa(dbla, dblb);
     i = 0;
-    
     while (dblb->first)
     {
         c = ft_reverse_bubble(list_to_array(dblb));
@@ -134,9 +131,9 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             do_pa(dbla, dblb);
         else if (!ft_take_inter(list_to_array(dblb), c[1], c[0]))
         {
-            while (dblb->first->content != c[0] && ft_next_upper(list_to_array(dblb)) > 1)
+            while (dblb->first->content != c[0] && ft_next_seeked(list_to_array(dblb), c[0]) > 1)
                 do_rb(dbla, dblb);
-            while (dblb->first->content != c[0] && ft_next_upper(list_to_array(dblb)) <= 1)
+            while (dblb->first->content != c[0] && ft_next_seeked(list_to_array(dblb), c[0]) <= 1)
                 do_rrb(dbla, dblb);
             do_pa(dbla, dblb);
         }
@@ -145,16 +142,15 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             if (ft_direction_after_inter(list_to_array(dblb), c[1], c[0]) >= 1)
             {
                 printf("ENTERING FORWARD B : \n");
-                int     b = ft_forwardB(dbla, dblb, c, c[0], 0, 1, ft_next_upper(list_to_array(dblb)));
+                int     b = ft_forwardB(dbla, dblb, c, c[0], 0);
                 while (--b)
                     do_rra(dbla, dblb);
                 printf("END OF FORWARD B\n");
             }
             else
-            
             {
                 printf("ENTERING BACKWARD B : \n");
-                int     b = ft_backwardB(dbla, dblb, c, c[0], 0, 1, ft_next_upper(list_to_array(dblb)));
+                int     b = ft_backwardB(dbla, dblb, c, c[0], 0);
                 while (--b)
                 
                     do_rra(dbla, dblb);
@@ -166,7 +162,6 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
     while (dblb->first)
         do_pa(dbla, dblb);
     display_lists(dbla, dblb);
-    
     free(a);
     free(b);
 }
