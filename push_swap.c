@@ -28,7 +28,6 @@ int     ft_take_inter(int *tab, int inter, int final)
     return (reader);
 }
 
-
 int     ft_intermed_first(int *tab, int *bubbled, int final)
 {
     int     i = 0;
@@ -127,7 +126,7 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
     while (dblb->first)
     {
         c = ft_reverse_bubble(list_to_array(dblb));
-        if (dblb->first->content == c[0])
+        if (dblb->first->content == c[0]) 
             do_pa(dbla, dblb);
         else if (!ft_take_inter(list_to_array(dblb), c[1], c[0]))
         {
@@ -157,7 +156,6 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
                 printf("END OF BACKWARD B\n");
             }
         }
-        
     }
     while (dblb->first)
         do_pa(dbla, dblb);
