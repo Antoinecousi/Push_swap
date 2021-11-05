@@ -83,7 +83,7 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
     int     lower = a[0];
     i = 0;
     c = ft_bubble(list_to_array(dbla));
-    while (ft_same(dbla, c))
+    while (ft_same(dbla, c) && ft_dblist_size(dbla) > 5)
     {
         c = ft_bubble(list_to_array(dbla));
         if (dbla->first->content == c[0])
@@ -120,6 +120,7 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             }
         }
     }
+    // ft_lowSampleSort(dbla, dblb, &coor);
     while (i-- > 1)
         do_pa(dbla, dblb);
     i = 0;
@@ -196,8 +197,10 @@ int     size_array(int *tab)
     int     i;
     
     i = 0;
-    while (tab[i++])
-        ;
+    while (tab[i])
+    {
+        i++;
+    }
     return (i);
 }
 
@@ -221,16 +224,157 @@ void    ft_first_split(p_coor *coor, dblist *dbla, dblist *dblb)
     size = ft_dblist_size(dbla);
     i = 0;
     display_lists(dbla, dblb);
-    while (size / 2 > i)
+    printf(" ------ \n %d is my lower med \n", coor->Huitieme);
+    while (i++ < size)
     {
-        if (dbla->first->content < coor->med)
+        if (dbla->first->content < coor->Huitieme)
+            do_pb(dbla, dblb);
+        else
+            do_ra(dbla, dblb);
+    }
+}
+
+void    ft_second_split(p_coor *coor, dblist *dbla, dblist *dblb)
+{
+    int     size;
+    int     i;
+
+    size = ft_dblist_size(dbla);
+    i = 0;
+    display_lists(dbla, dblb);
+    printf("%d is my med \n", coor->lowerMed);
+    while (i++ < size)
+    {
+        if (dbla->first->content < coor->lowerMed)
+            do_pb(dbla, dblb);
+        else
+            do_ra(dbla, dblb);
+    }
+}
+
+void    ft_third_split(p_coor *coor, dblist *dbla, dblist *dblb)
+{
+    int     size;
+    int     i;
+    int     j;
+
+    j = 0;
+    size = ft_dblist_size(dbla);
+    printf("%d is my upper med \n", coor->secHuitieme);
+    i = 0;
+    display_lists(dbla, dblb);
+    while (i++ < size)
+    {
+        if (dbla->first->content < coor->secHuitieme)
         {
             do_pb(dbla, dblb);
-            i++;
+            j++;
         }
         else
             do_ra(dbla, dblb);
     }
+    // while (j--)
+    //     do_pa(dbla, dblb);
+}
+
+void    ft_quatre_split(p_coor *coor, dblist *dbla, dblist *dblb)
+{
+    int     size;
+    int     i;
+    int     j;
+
+    j = 0;
+    size = ft_dblist_size(dbla);
+    printf("%d is my upper med \n", coor->med);
+    i = 0;
+    display_lists(dbla, dblb);
+    while (i++ < size)
+    {
+        if (dbla->first->content < coor->med)
+        {
+            do_pb(dbla, dblb);
+            j++;
+        }
+        else
+            do_ra(dbla, dblb);
+    }
+    // while (j--)
+    //     do_pa(dbla, dblb);
+}
+
+void    ft_cinq_split(p_coor *coor, dblist *dbla, dblist *dblb)
+{
+    int     size;
+    int     i;
+    int     j;
+
+    j = 0;
+    size = ft_dblist_size(dbla);
+    printf("%d is my upper med \n", coor->thiHuitieme);
+    i = 0;
+    display_lists(dbla, dblb);
+    while (i++ < size)
+    {
+        if (dbla->first->content < coor->thiHuitieme)
+        {
+            do_pb(dbla, dblb);
+            j++;
+        }
+        else
+            do_ra(dbla, dblb);
+    }
+    // while (j--)
+    //     do_pa(dbla, dblb);
+}
+
+void    ft_six_split(p_coor *coor, dblist *dbla, dblist *dblb)
+{
+    int     size;
+    int     i;
+    int     j;
+
+    j = 0;
+    size = ft_dblist_size(dbla);
+    printf("%d is my upper med \n", coor->upperMed);
+    i = 0;
+    display_lists(dbla, dblb);
+    while (i++ < size)
+    {
+        if (dbla->first->content < coor->upperMed)
+        {
+            do_pb(dbla, dblb);
+            j++;
+        }
+        else
+            do_ra(dbla, dblb);
+    }
+    // while (j--)
+    //     do_pa(dbla, dblb);
+}
+
+void    ft_sept_split(p_coor *coor, dblist *dbla, dblist *dblb)
+{
+    int     size;
+    int     i;
+    int     j;
+
+    j = 0;
+    size = ft_dblist_size(dbla);
+    printf("%d is my upper med \n", coor->fouHuitieme);
+    i = 0;
+    display_lists(dbla, dblb);
+    while (i++ < size)
+    {
+        if (dbla->first->content < coor->fouHuitieme)
+        {
+            do_pb(dbla, dblb);
+            j++;
+        }
+        else
+            do_ra(dbla, dblb);
+    }
+    // while (j--)
+    //     do_pa(dbla, dblb);
 }
 
 int     ft_same(dblist *dbla, int *bubbled)
@@ -257,7 +401,7 @@ int     *list_to_array(dblist *dbl)
     p_list  *a;
 
     i = 0;
-    tab = malloc(1000);
+    tab = malloc(1000000);
     a = dbl->first;
     while (a)
     {
@@ -276,8 +420,8 @@ int     main(int argc, char **argv)
     dblist *dbla;
     dblist *dblb;
 
-    dbla = malloc(1000);
-    dblb = malloc(1000);
+    dbla = malloc(1000000);
+    dblb = malloc(1000000);
     char **splited = NULL;
     // if (ft_checker(argv, argc))
     //    return (ft_error);
@@ -296,8 +440,15 @@ int     main(int argc, char **argv)
     ft_fill_first_coor(&coor, dbla);
     // if (argc > 4)
     // {
-        ft_first_split(&coor, dbla, dblb);
-        ft_do(dbla, dblb, &coor);
+    //    ft_pretri(&coor, dbla, dblb);
+    // ft_first_split(&coor, dbla, dblb);
+    // ft_second_split(&coor, dbla, dblb);
+    // ft_third_split(&coor, dbla, dblb);
+    ft_quatre_split(&coor, dbla, dblb);
+    // ft_cinq_split(&coor, dbla, dblb);
+    // ft_six_split(&coor, dbla, dblb);
+    // ft_sept_split(&coor, dbla, dblb);
+    ft_do(dbla, dblb, &coor);
     // }
     p_list *a;
     p_list *b;

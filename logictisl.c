@@ -82,7 +82,6 @@ void    display_tab(int *tab)
         printf("%d ", *tab);
         tab++;
     }
-    printf("\n");
 }
 
 void    ft_init_dblist(dblist *dbla)

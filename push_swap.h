@@ -41,8 +41,18 @@ typedef struct      p_coor
     int     posLast;
     int     lowerMed;
     int     upperMed;
+    int     Huitieme;
+    int     secHuitieme;
+    int     thiHuitieme;
+    int     fouHuitieme;
 }                   p_coor;
 
+int     ft_get_huitieme(int *tab);
+int     ft_get_secondhuitieme(int *tab);
+int     ft_get_thirdhuitieme(int *tab);
+int     ft_get_fourthhuitieme(int *tab);
+int     ft_get_quarter(int *tab);
+int     ft_get_thirdquarter(int *tab);
 int     ft_next_seeked(int *tab, int c);
 int     ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol);
 int     ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol);

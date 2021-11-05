@@ -5,15 +5,17 @@ int     ft_inter_calcul_backward(int *tab, int inter, int final)
     int     size;
 
     size = size_array(tab);
+    display_tab(tab);
+    printf("\n%d size", size_array(tab));
     printf("VALEURS INTER : %d \n VALEUR FINAL : %d\n", inter, final);
-    printf("VOICI LES VALEURS %d \n %d \n %d \n %d \n", size - final - inter + 1 , 2 * size - 3 * final + inter - 1, final - 3 * inter - 1, size - inter - final - 2);
+    printf("VOICI LES VALEURS %d \n %d \n %d \n %d \n", size - final - inter, 2 * size - 3 * final + inter - 1, final - 3 * inter - 1, size - inter - final - 2);
     if (inter == final + 1)
         return (0);
     if (inter - 1 > final)
         return (1);
-    else if (size - final - inter + 1 >= 1 && 2 * size - 3 * final + inter - 1 >= 1)
+    else if (size - final - inter >= 1 && 2 * size - 3 * final + inter - 1 >= 1)
         return (1);
-    else if (final - 3 * inter - 1 >= 1 && size - inter - final- 2 >= 1)
+    else if (final - 3 * inter - 1 >= 1 && size - inter - final - 2 >= 1)
         return (1);
     else
         return (0);
@@ -25,7 +27,7 @@ int     ft_inter_calcul_forward(int *tab, int inter, int final)
 
     size = size_array(tab);
     printf("VALEURS INTER : %d \n VALEUR FINAL : %d\n", inter, final);
-    printf("VOICI LES VALEURS %d \n %d \n %d \n %d \n",inter + final - size - 2, 3 * final - inter - 1, final - size + inter, 3 * inter - 2 * size - final - 1);
+    printf("VOICI LES VALEURS %d \n %d \n %d \n %d \n", inter + final - size - 2, 3 * final - inter - 1, final - size + inter, 3 * inter - 2 * size - final - 1);
     if (inter < final)
         return (1);
     else if (inter + final - size - 2 >= 1 && 3 * final - inter - 1 >= 1)

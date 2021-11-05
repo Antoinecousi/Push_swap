@@ -20,7 +20,6 @@ int     nbr_inter_backward(int *tab, int *bubbled, int last, int totInter)
     i = 0;
     while (copy[i++] != last)
         ins.distanceTot++;
-    ins.distanceTot++;
     i = 0;
     printf("current : %d\n", copy[i]);
     printf("ins.lastPos : %d\n", ins.lastPos);
@@ -60,7 +59,7 @@ int     nbr_inter_backward(int *tab, int *bubbled, int last, int totInter)
                 }
                 printf("\n    take from behind : %d\n", copy[size - pipi + j]);
                 ins.tot++;
-                ins.totrr += pipi - 1;
+                ins.totrr += pipi;
                 ins.totrr += antitotrr;
                 printf("\t\t\t\t\t Totrr++\n");
                 ins.lastPos = i + 1;
@@ -90,10 +89,10 @@ int     nbr_inter_backward(int *tab, int *bubbled, int last, int totInter)
     printf("ins.tot : %d\n", ins.tot);
     printf("ins.totrr : %d\n", ins.totrr);
     printf("ins.distanceTot : %d\n", ins.distanceTot);
-    printf("Insertion normale = %d\n", ins.distanceTot * 2 - ins.firstPos * 2 + ins.lastPos + 1 + ins.totrr);
-    printf("Insertion améliorée = %d\n", ins.distanceTot + ins.tot * 4 + ins.totrr + 1);
-    int Insertion_normale = ins.distanceTot * 2 - ins.firstPos * 2 + ins.lastPos + 1 + ins.totrr;
-    int Insertion_améliorée = ins.distanceTot + ins.tot * 4 + ins.totrr + 1;
+    printf("Insertion normale = %d\n", ins.distanceTot * 2 - ins.firstPos * 2 + ins.lastPos + 2 + ins.totrr);
+    printf("Insertion améliorée = %d\n", ins.distanceTot + ins.tot * 5 + ins.totrr + 1);
+    int Insertion_normale = ins.distanceTot * 2 - ins.firstPos * 2 + ins.lastPos + 2 + ins.totrr;
+    int Insertion_améliorée = ins.distanceTot + ins.tot * 5 + ins.totrr + 1;
     printf("%d\n", Insertion_normale - Insertion_améliorée);
     free(copy);
     if (ins.firstPos == -1)

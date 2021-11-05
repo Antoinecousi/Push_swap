@@ -15,8 +15,10 @@ int    ft_recursiveShitForwardA(dblist *dbla, dblist *dblb, int *tab, int final,
         i = ft_recursiveShitForwardA(dbla, dblb, tab, final, lol);
     else
     {
-        while (dbla->first->content != final)
+        while (dbla->first->content != tab[0] && ft_next_seeked(list_to_array(dbla), tab[0]) > 1)
             do_ra(dbla, dblb);
+        while (dbla->first->content != tab[0] && ft_next_seeked(list_to_array(dbla), tab[0]) <= 1)
+            do_rra(dbla, dblb);
         do_pb(dbla, dblb);
     }
     do_sb(dbla, dblb);
@@ -43,7 +45,9 @@ int    ft_backwardA(dblist *dbla, dblist *dblb, int *tab, int final, int lol)
         i = ft_backwardA(dbla, dblb, tab, final, lol);
     else
     {
-        while (dbla->first->content != final)
+        while (dbla->first->content != tab[0] && ft_next_seeked(list_to_array(dbla), tab[0]) > 1)
+            do_ra(dbla, dblb);
+        while (dbla->first->content != tab[0] && ft_next_seeked(list_to_array(dbla), tab[0]) <= 1)
             do_rra(dbla, dblb);
         do_pb(dbla, dblb);
     }

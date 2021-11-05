@@ -10,6 +10,10 @@ void    ft_init_first_coor(p_coor *coor)
     coor->posLast = 0;
     coor->upperMed = 0;
     coor->lowerMed = 0;
+    coor->Huitieme = 0;
+    coor->secHuitieme = 0;
+    coor->thiHuitieme = 0;
+    coor->fouHuitieme = 0;
 }
 
 void    ft_fill_first_coor(p_coor *coor, dblist *dbl)
@@ -46,6 +50,12 @@ void    ft_fill_first_coor(p_coor *coor, dblist *dbl)
         i++;
     }
     ft_fill_first_coor_alt(coor, tab);
+    coor->lowerMed = ft_get_quarter(tab);
+    coor->upperMed = ft_get_thirdquarter(tab);
+    coor->Huitieme = ft_get_huitieme(tab);
+    coor->secHuitieme = ft_get_secondhuitieme(tab);
+    coor->thiHuitieme = ft_get_thirdhuitieme(tab);
+    coor->fouHuitieme = ft_get_fourthhuitieme(tab);
 }
 
 void    ft_fill_first_coor_alt(p_coor *coor, int *tab)
