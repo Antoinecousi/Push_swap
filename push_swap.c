@@ -114,7 +114,6 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
                 printf("ENTERING BACKWARD A : \n");
                 int     b = ft_backwardA(dbla, dblb, c, c[0], 0);
                 while (--b)
-                
                     do_rrb(dbla, dblb);
                 printf("END OF BACKWARD A\n");
             }
