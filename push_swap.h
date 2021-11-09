@@ -47,6 +47,9 @@ typedef struct      p_coor
     int     fouHuitieme;
 }                   p_coor;
 
+int     ft_splitterb(p_coor *coor, dblist *dbla, dblist *dblb);
+int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb);
+int     ft_splitter(p_coor *coor, dblist *dbla, dblist *dblb);
 int     ft_get_huitieme(int *tab);
 int     ft_get_secondhuitieme(int *tab);
 int     ft_get_thirdhuitieme(int *tab);
@@ -86,6 +89,12 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor);
 int     is_sup(dblist *dbl);
 int     *list_to_array(dblist *dbl);
 void    ft_first_split(p_coor *coor, dblist *dbla, dblist *dblb);
+void    ft_second_split(p_coor *coor, dblist *dbla, dblist *dblb);
+void    ft_third_split(p_coor *coor, dblist *dbla, dblist *dblb);
+void    ft_quatre_split(p_coor *coor, dblist *dbla, dblist *dblb);
+void    ft_cinq_split(p_coor *coor, dblist *dbla, dblist *dblb);
+void    ft_six_split(p_coor *coor, dblist *dbla, dblist *dblb);
+void    ft_sept_split(p_coor *coor, dblist *dbla, dblist *dblb);
 int     ft_same(dblist *dbla, int *bubbled);
 void    ft_fill_stack(char **argv, dblist *dbla);
 void    ft_fill_first_coor_alt(p_coor *coor, int *tab);
