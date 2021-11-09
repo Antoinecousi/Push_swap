@@ -47,8 +47,9 @@ typedef struct      p_coor
     int     fouHuitieme;
 }                   p_coor;
 
+int     ft_take_inter(int *tab, int inter, int final);
 int     ft_splitterb(p_coor *coor, dblist *dbla, dblist *dblb);
-int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb);
+int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb, int size);
 int     ft_splitter(p_coor *coor, dblist *dbla, dblist *dblb);
 int     ft_get_huitieme(int *tab);
 int     ft_get_secondhuitieme(int *tab);

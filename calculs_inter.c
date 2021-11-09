@@ -1,5 +1,33 @@
 #include "push_swap.h"
 
+int     ft_take_inter(int *tab, int inter, int final)
+{
+    int     i;
+    int     j;
+    int     size;
+    int     reader;
+
+    i = 0;
+    j = 0;
+    reader = 0;
+    size = size_array(tab) / 2;
+    printf("VALEURS INTER : %d  VALEUR FINAL : %d\n", inter, final);
+    while (tab[i++] != inter)
+    {
+    }
+    while (tab[j++] != final)
+    {
+    }
+    printf("POSITION INTER : %d  POSITION FINAL : %d\n", i - 1, j - 1);
+    if (j - 1 > size)
+        reader = ft_inter_calcul_backward(tab, i - 1, j - 1);
+    if (j - 1 <= size)
+        reader = ft_inter_calcul_forward(tab, i - 1, j - 1);
+    // if (size / 2 - i > j)
+    printf("MON READER EST A %d   MON SIZE A %d\n", reader, size);
+    return (reader);
+}
+
 int     ft_inter_calcul_backward(int *tab, int inter, int final)
 {
     int     size;
