@@ -5,15 +5,18 @@ int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb, int size)
     int     i;
     int     total;
 
+    int      *toto = ft_bubble(list_to_array(dbla));
     i = 1;
     total = 0;
     total += ft_splitter(coor, dbla, dblb);
-    while (i++ < size / 50)
+    while (ft_same(dbla, toto))
     {
-        while (ft_dblist_size(dbla) > 33)
+        while (ft_dblist_size(dbla) > 1)
                 total += ft_splitter(coor, dbla, dblb);
-        while (ft_dblist_size(dblb) > 33)
-                total += ft_splitterb(coor, dbla, dblb);
+        if (dbla->first->content > dbla->first->next->content)
+            do_sa(dbla, dblb);
+        while (ft_dblist_size(dblb) > 0)
+            total += ft_splitterb(coor, dbla, dblb);
     }
     // while (ft_dblist_size(dbla) > 50)
     //         total += ft_splitter(coor, dbla, dblb);
