@@ -1,5 +1,92 @@
 #include "push_swap.h"
 
+
+int     ft_position(int *tab, int inter)
+{
+    int     i;
+
+    i = 0;
+    while (tab[i] != inter)
+    {
+        i++;
+    }
+    return (i);
+}
+
+int     topOrBottomHardBack(int *tab, int inter, int final)
+{
+    int     allOperations[4];
+    int     size;
+    int     tmp;
+    int     i;
+
+    printf("\t\t\t\t\t\tSALUT FRERE VOICI LE CALCUL POUR %d et %d ", inter, final);
+    inter = ft_position(tab, inter);
+    final = ft_position(tab, final);
+    printf("qui sont aux index: %d et %d ", inter, final);
+    size = size_array(tab);
+    i = 0;
+    tmp = INT_MAX;
+    allOperations[0] = size - inter + 2;
+    allOperations[1] = 2 * (size - final) + inter + 1;
+    allOperations[2] = final + 2;
+    allOperations[3] = 2 * inter + (size - final) + 3;
+    while (i < 4)
+    {
+        if (allOperations[i] < tmp)
+            tmp = allOperations[i];
+        i++;
+    }
+    printf("ce qui donne le meilleur à %d pour une size de %d \n", tmp, size);
+    return (tmp);
+}
+// final > inter forw = inter + 1;
+// final > inter chan = 2 * final + (size - inter) + 2;
+// inter > final back = (size - i) + 3;
+// inter > final chan = 2 * (size - inter) + final + 2;
+
+int     topOrBottomHardFor(int *tab, int inter, int final)
+{
+    int     allOperations[4];
+    int     size;
+    int     tmp;
+    int     i;
+
+    printf("\t\t\t\t\t\tSALUT FRERE VOICI LE CALCUL POUR %d et %d ", inter, final);
+    inter = ft_position(tab, inter);
+    final = ft_position(tab, final);
+    printf("qui sont aux index: %d et %d ", inter, final);
+    size = size_array(tab);
+    i = 0;
+    tmp = INT_MAX;
+    allOperations[0] = inter + 1;
+    allOperations[1] = 2 * final + (size - inter) + 2;
+    allOperations[2] = (size - i) + 3;
+    allOperations[3] = 2 * (size - inter) + final + 2;
+    while (i < 4)
+    {
+        if (allOperations[i] < tmp)
+            tmp = allOperations[i];
+        i++;
+    }
+    printf("ce qui donne le meilleur à %d pour une size de %d \n", tmp, size);
+    return (tmp);
+}
+
+int     topOrBottomHard(int *tab, int inter, int final)
+{
+    int     size;
+    int     result;
+
+    size = size_array(tab) / 2;
+
+    if (ft_position(tab, final) > size)
+        result = topOrBottomHardBack(tab, inter, final);
+    else
+        result = topOrBottomHardFor(tab, inter, final);
+    return (result);
+}
+
 int     ft_take_inter(int *tab, int inter, int final)
 {
     int     i;
@@ -65,35 +152,27 @@ int     ft_inter_calcul_forward(int *tab, int inter, int final)
     else
         return (0);
 }
-// // pour backward (i > moitié)
-// // i > j back = size - j + 2; 
-// // i > j chan = 2 * (size - i) + j + 1;
-// // j > i forw = i + 2;
-// // j > i chan = 2 * j + (size - i) + 3;
+// pour backward (i > moitié)
+// final > inter back = size - inter + 2; 
+// final > inter chan = 2 * (size - i) + inter + 1;
+// inter > final forw = final + 2;
+// inter > final chan = 2 * inter + (size - i) + 3;
 
-// // i > j back - j > i forw = size - j + 2 - i - 1;
-//                            = size - i - j + 1;
-// // i > j chan - j > i forw = 2 * (size - i) + j + 1 - i - 1;
-//                            = 2 * size - 3 * i + j - 1;
-// // i > j back - j > i chan = size - j + 2 - 2 j - size + i - 3;
-//                            = i - 3 * j - 1;
-// // i > j chan - j > i chan = 2 * size - (2 * i) + j + 1 - (2 * j) - size + i - 3;
-//                            = size - j - i - 2;
+// final > inter back - inter > final forw = size - inter + 2 - final - 1;                       = size - final - inter + 1;
+// final > inter chan - inter > final forw = 2 * (size - i) + inter + 1 - final - 1;             = 2 * size - 3 * final + inter - 1;
+// final > inter back - inter > final chan = size - inter + 2 - 2 inter - size + final - 3;              = final - 3 * inter - 1;
+// final > inter chan - inter > final chan = 2 * size - (2 * i) + inter + 1 - (2 * inter) - size +final - 3;             = size - inter - final - 2;
 
 // pour forward (i < moitié)
-// i > j forw = j + 1;
-// i > j chan = 2 * i + (size - j) + 2;
-// j > i back = (size - i) + 3;
-// j > i chan = 2 * (size - j) + i + 2;
+// final > inter forw = inter + 1;
+// final > inter chan = 2 * final + (size - inter) + 2;
+// inter > final back = (size - i) + 3;
+// inter > final chan = 2 * (size - inter) +final + 2;
 
-// i > j forw - j > i back = j + 1 - size + i - 3;
-//                            = j + i - size - 2;
-// // i > j chan - j > i back = 2 * i + (size - j) + 2 - size + i - 3;
-//                            = 3 * i - j - 1;
-// // i > j forw - j > i chan = j + 1 - (2 * size) + (2 * j) - i - 2;
-//                            = 3 * j - 2 * size - i - 1;
-// // i > j chan - j > i chan = 2 * i + (size - j) + 2 - (2 * size) + (2 * j) - i - 2;
-//                            = i - size + j;
+// final > inter forw - inter > final back = inter + 1 - size + final - 3;              = inter + final - size - 2;
+// final > inter chan - inter > final back = 2 * final + (size - inter) + 2 - size + final - 3;              = 3 * final - inter - 1;
+// final > inter forw - inter > final chan = inter + 1 - (2 * size) + (2 * inter) - final - 2;               = 3 * inter - 2 * size - final - 1;
+// final > inter chan - inter >final chan = 2 *final + (size - inter) + 2 - (2 * size) + (2 * inter) -final - 2;             = final - size + inter;
 
 
 // int     ft_direction_after_inter(int *tab, int inter, int final)

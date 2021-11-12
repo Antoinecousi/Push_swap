@@ -47,6 +47,9 @@ typedef struct      p_coor
     int     fouHuitieme;
 }                   p_coor;
 
+int     ft_position(int *tab, int inter);
+int     topOrBottomHard(int *tab, int inter, int final);
+int     topOrBot(int *tab, int c);
 int     ft_take_inter(int *tab, int inter, int final);
 int     ft_splitterb(p_coor *coor, dblist *dbla, dblist *dblb);
 int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb, int size);

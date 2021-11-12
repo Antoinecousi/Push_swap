@@ -9,13 +9,13 @@ int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb, int size)
     i = 1;
     total = 0;
     total += ft_splitter(coor, dbla, dblb);
-    while (ft_same(dbla, toto))
+    while (i++ < 70)
     {
-        while (ft_dblist_size(dbla) > 1)
+        while (ft_dblist_size(dbla) > 0)
                 total += ft_splitter(coor, dbla, dblb);
-        if (dbla->first->content > dbla->first->next->content)
-            do_sa(dbla, dblb);
-        while (ft_dblist_size(dblb) > 0)
+        // if (dbla->first->content > dbla->first->next->content)
+        //     do_sa(dbla, dblb);
+        while (ft_dblist_size(dblb) > 2)
             total += ft_splitterb(coor, dbla, dblb);
     }
     // while (ft_dblist_size(dbla) > 50)
@@ -39,7 +39,7 @@ int    ft_splitter(p_coor *coor, dblist *dbla, dblist *dblb)
     while (i < size)
     {
         i++;
-        if (dbla->first->content < coor->med)
+        if (dbla->first->content <= coor->med)
         {
             do_pb(dbla, dblb);
             b++;    
@@ -47,7 +47,7 @@ int    ft_splitter(p_coor *coor, dblist *dbla, dblist *dblb)
         else
             do_ra(dbla, dblb);
     }
-    printf("Chunk size is %d\n", b);
+    printf("A Chunk size is %d\n", b);
     return (i);
 }
 
@@ -64,7 +64,7 @@ int    ft_splitterb(p_coor *coor, dblist *dbla, dblist *dblb)
     printf("valeur de mediane = %d ///// size = %d \n", coor->med, size);
     while (i < size)
     {
-        if (dblb->first->content > coor->med)
+        if (dblb->first->content >= coor->med)
         {
             do_pa(dbla, dblb);
             b++;
@@ -73,6 +73,6 @@ int    ft_splitterb(p_coor *coor, dblist *dbla, dblist *dblb)
             do_rb(dbla, dblb);
         i++;
     }
-    printf("Chunk size is %d\n", b);
+    printf("B Chunk size is %d\n", b);
     return (i);
 }

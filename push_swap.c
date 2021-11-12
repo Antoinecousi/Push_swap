@@ -30,7 +30,7 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             do_pb(dbla, dblb);
             i++;
         }
-        else if (ft_next_seeked(list_to_array(dbla), c[0]) < ft_next_seeked(list_to_array(dbla), c[ft_dblist_size(dbla) - 1]) + 2)
+        else if (topOrBottomHard(list_to_array(dbla), c[1], c[0]) < topOrBottomHard(list_to_array(dbla), c[ft_dblist_size(dbla) - 2], c[ft_dblist_size(dbla) - 1]) + 2)
         {
             if (!ft_take_inter(list_to_array(dbla), c[1], c[0]))
             {
@@ -97,40 +97,71 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
     while (i-- > 1)
         do_pa(dbla, dblb);
     // do_rra(dbla, dblb);
-
+    j = 0;
     i = 0;
     while (dblb->first)
     {
         c = ft_reverse_bubble(list_to_array(dblb));
         if (dblb->first->content == c[0]) 
             do_pa(dbla, dblb);
-        else if (!ft_take_inter(list_to_array(dblb), c[1], c[0]))
-        {
-            while (dblb->first->content != c[0] && ft_next_seeked(list_to_array(dblb), c[0]) > 1)
-                do_rb(dbla, dblb);
-            while (dblb->first->content != c[0] && ft_next_seeked(list_to_array(dblb), c[0]) <= 1)
-                do_rrb(dbla, dblb);
-            do_pa(dbla, dblb);
-        }
-        else
-        {
-            if (ft_direction_after_inter(list_to_array(dblb), c[1], c[0]) >= 1)
+        else if (topOrBottomHard(list_to_array(dblb), c[1], c[0]) < topOrBottomHard(list_to_array(dblb), c[ft_dblist_size(dblb) - 2], c[ft_dblist_size(dblb) - 1]) + 2)
+            if (!ft_take_inter(list_to_array(dblb), c[1], c[0]))
             {
-                printf("ENTERING FORWARD B : \n");
-                int     b = ft_forwardB(dbla, dblb, c, c[0], 0);
-                while (--b)
-                    do_rra(dbla, dblb);
-                printf("END OF FORWARD B\n");
+                while (dblb->first->content != c[0] && ft_next_seeked(list_to_array(dblb), c[0]) > 1)
+                    do_rb(dbla, dblb);
+                while (dblb->first->content != c[0] && ft_next_seeked(list_to_array(dblb), c[0]) <= 1)
+                    do_rrb(dbla, dblb);
+                do_pa(dbla, dblb);
             }
             else
             {
-                printf("ENTERING BACKWARD B : \n");
-                int     b = ft_backwardB(dbla, dblb, c, c[0], 0);
-                while (--b)
-                
-                    do_rra(dbla, dblb);
-                printf("END OF BACKWARD B\n");
+                if (ft_direction_after_inter(list_to_array(dblb), c[1], c[0]) >= 1)
+                {
+                    printf("ENTERING FORWARD B : \n");
+                    int     b = ft_forwardB(dbla, dblb, c, c[0], 0);
+                    while (--b)
+                        do_rra(dbla, dblb);
+                    printf("END OF FORWARD B\n");
+                }
+                else
+                {
+                    printf("ENTERING BACKWARD B : \n");
+                    int     b = ft_backwardB(dbla, dblb, c, c[0], 0);
+                    while (--b)
+                    
+                        do_rra(dbla, dblb);
+                    printf("END OF BACKWARD B\n");
+                }
             }
+        else
+        {
+            if (!ft_take_inter(list_to_array(dblb), c[size_array(c) - 2], c[size_array(c) - 1]))
+            {
+                while (dblb->first->content != c[size_array(c) - 1] && ft_next_seeked(list_to_array(dblb), c[size_array(c) - 1]) > 1)
+                    do_rb(dbla, dblb);
+                while (dblb->first->content != c[size_array(c) - 1] && ft_next_seeked(list_to_array(dblb), c[size_array(c) - 1]) <= 1)
+                    do_rrb(dbla, dblb);
+                do_pa(dbla, dblb);
+            }
+            else
+            {
+                while (dblb->first->content != c[size_array(c) - 2] && ft_next_seeked(list_to_array(dblb), c[size_array(c) - 2]) > 1)
+                    do_rb(dbla, dblb);
+                while (dblb->first->content != c[size_array(c) - 2] && ft_next_seeked(list_to_array(dblb), c[size_array(c) - 2]) <= 1)
+                    do_rrb(dbla, dblb);
+                do_pa(dbla, dblb);
+                j++;
+                i++;
+                while (dblb->first->content != c[size_array(c) - 1] && ft_next_seeked(list_to_array(dblb), c[size_array(c) - 1]) > 1)
+                    do_rb(dbla, dblb);
+                while (dblb->first->content != c[size_array(c) - 1] && ft_next_seeked(list_to_array(dblb), c[size_array(c) - 1]) <= 1)
+                    do_rrb(dbla, dblb);
+                do_pa(dbla, dblb);
+                do_ra(dbla, dblb);
+            }
+            do_ra(dbla, dblb);
+            j++;
+            i++;
         }
     }
     while (dblb->first)
@@ -252,5 +283,6 @@ int     main(int argc, char **argv)
         
         b = b->next;
     }
+    printf("prout");
     return (0);
 }

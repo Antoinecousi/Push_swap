@@ -6,7 +6,7 @@
 /*   By: acousini <acousini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:16:43 by acousini          #+#    #+#             */
-/*   Updated: 2021/11/04 16:39:45 by acousini         ###   ########.fr       */
+/*   Updated: 2021/11/11 16:16:12 by acousini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,31 @@ int     ft_next_seeked(int *tab, int c)
         return (0);
     printf("prochain pos de lower : %d      donc i / pos = %d \n", pos, i / pos);
 return (i / pos);
+}
+
+// int     ft_shorter(int *tab, int c, int d)
+// {
+//     int
+// }
+
+int     topOrBot(int *tab, int c)
+{
+    int     i;
+    int     j;
+
+    j = size_array(tab);
+    i = 0;
+    // if (j > 0)
+    //     return (0);
+    while (tab[i])
+    {
+        if (tab[i] == c)
+            break;
+        i++;
+    }
+    if (i > j - i)
+        return (j - i);
+    return (i);
 }
 
 int     ft_next_lower(int *tab)
