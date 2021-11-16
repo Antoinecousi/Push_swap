@@ -47,13 +47,19 @@ typedef struct      p_coor
     int     fouHuitieme;
 }                   p_coor;
 
+int    ft_splitterbdeux(dblist *dbla, dblist *dblb, int size, int until);
+int     ft_get_med_div(int *tab, int div_med);
+int     *ft_tab_reducer(int lenght, int *tab);
+int     ft_is_croissant(dblist *dbla);
+int     ft_secondrecurs(p_coor *coor, dblist *dbla, dblist *dblb, int size, int med);
+int     ft_recursiveshit(p_coor *coor, dblist *dbla, dblist *dblb);
 int     ft_position(int *tab, int inter);
 int     topOrBottomHard(int *tab, int inter, int final);
 int     topOrBot(int *tab, int c);
 int     ft_take_inter(int *tab, int inter, int final);
-int     ft_splitterb(p_coor *coor, dblist *dbla, dblist *dblb);
 int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb, int size);
-int     ft_splitter(p_coor *coor, dblist *dbla, dblist *dblb);
+int     ft_splitterb(dblist *dbla, dblist *dblb, int size, int until);
+int     ft_splitter(dblist *dbla, dblist *dblb, int size, int until);
 int     ft_get_huitieme(int *tab);
 int     ft_get_secondhuitieme(int *tab);
 int     ft_get_thirdhuitieme(int *tab);

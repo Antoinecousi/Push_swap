@@ -6,7 +6,7 @@
 /*   By: acousini <acousini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:16:43 by acousini          #+#    #+#             */
-/*   Updated: 2021/11/11 16:16:12 by acousini         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:49:08 by acousini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,19 @@ int     ft_get_tier(int *tab)
     return (tab[(i - 1) / 3]);
 }
 
+int     ft_get_med_div(int *tab, int div_med)
+{
+    int     i;
+    
+    i = 0;
+    while (tab[i])
+    {
+        i++;
+    }
+    tab = ft_bubble(tab);
+    return (tab[(i - 1) / div_med]);
+}
+
 void    ft_init_coor(p_coor coor)
 {
     coor.first = INT_MAX;
@@ -237,6 +250,7 @@ int     ft_get_med(int *tab)
     tab = ft_bubble(tab);
     return (tab[(i - 1) / 2]);
 }
+
 
 int     ft_get_thirdhuitieme(int *tab)
 {

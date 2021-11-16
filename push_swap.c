@@ -210,6 +210,26 @@ int     ft_same(dblist *dbla, int *bubbled)
     return (0);
 }
 
+int     ft_is_croissant(dblist *dbla)
+{
+    int     i;
+    int     tmp;
+    p_list  *a;
+
+    i = 0;
+    a = dbla->first;
+    tmp = -2147483648;
+    while (a)
+    {
+        if (a->content < tmp)
+            return (1);
+        tmp = a->content;
+        a = a->next;
+        i++;
+    }
+    return (0);
+}
+
 int     *list_to_array(dblist *dbl)
 {
     int     i;
@@ -257,16 +277,22 @@ int     main(int argc, char **argv)
     // if (argc > 4)
     // {
     //    ft_pretri(&coor, dbla, dblb);
-    ft_first_split(&coor, dbla, dblb);
-    ft_second_split(&coor, dbla, dblb);
-    ft_third_split(&coor, dbla, dblb);
-    ft_quatre_split(&coor, dbla, dblb);
-    ft_cinq_split(&coor, dbla, dblb);
-    ft_six_split(&coor, dbla, dblb);
-    ft_sept_split(&coor, dbla, dblb);
-    // ft_decoupage(&coor, dbla, dblb, ft_dblist_size(dbla));
+    // ft_first_split(&coor, dbla, dblb);
+    // ft_second_split(&coor, dbla, dblb);
+    // ft_third_split(&coor, dbla, dblb);
+    // ft_quatre_split(&coor, dbla, dblb);
+    // ft_cinq_split(&coor, dbla, dblb);
+    // ft_six_split(&coor, dbla, dblb);
+    // ft_sept_split(&coor, dbla, dblb);
+    argc = 500;
+    while (ft_dblist_size(dbla) > (argc - 1) / 24)
+        ft_splitter(dbla, dblb, argc, argc - 1 - (4 * ft_dblist_size(dbla) / 5));
+    while (ft_dblist_size(dblb) > (argc - 1) / 4)
+        ft_splitterb(dbla, dblb, argc, argc - 1 - (9 / 10 * ft_dblist_size(dblb)));
+    while (ft_dblist_size(dblb) > 1)
+        ft_splitterbdeux(dbla, dblb, argc, argc - 1 - (3 / 4 * ft_dblist_size(dblb)));
+    ft_decoupage(&coor, dbla, dblb, ft_dblist_size(dbla));
     ft_do(dbla, dblb, &coor);
-    // }
     p_list *a;
     p_list *b;
     a = dbla->first;
