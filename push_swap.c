@@ -22,7 +22,7 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
     i = 0;
     int     j = 0;
     c = ft_bubble(list_to_array(dbla));
-    while (/*ft_same(dbla, c) &&*/ ft_dblist_size(dbla) > 1)
+    while (/*ft_same(dbla, c) &&*/ ft_dblist_size(dbla) > 5)
     {
         c = ft_bubble(list_to_array(dbla));
         if (dbla->first->content == c[0])
@@ -44,19 +44,19 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             {
                 if (ft_direction_after_inter(list_to_array(dbla), c[1], c[0]) >= 1)
                 {
-                    printf("ENTERING FORWARD A : \n");
+                    // printf("ENTERING FORWARD A : \n");
                     int     b = ft_recursiveShitForwardA(dbla, dblb, c, c[0], 0);
                     while (--b)
                         do_rrb(dbla, dblb);
-                    printf("END OF FORWARD A\n");
+                    // printf("END OF FORWARD A\n");
                 }
                 else 
                 {
-                    printf("ENTERING BACKWARD A : \n");
+                    // printf("ENTERING BACKWARD A : \n");
                     int     b = ft_backwardA(dbla, dblb, c, c[0], 0);
                     while (--b)
                         do_rrb(dbla, dblb);
-                    printf("END OF BACKWARD A\n");
+                    // printf("END OF BACKWARD A\n");
                 }
             }
         }
@@ -91,10 +91,11 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             i++;
         }
     }
+    sort_five_numbers(dbla, dblb);
     // ft_lowSampleSort(dbla, dblb, &coor);
-    while (j--)
+    while (j-- > 0)
         do_rrb(dbla, dblb);
-    while (i-- > 1)
+    while (i-- > 0)
         do_pa(dbla, dblb);
     // do_rra(dbla, dblb);
     j = 0;
@@ -117,20 +118,20 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             {
                 if (ft_direction_after_inter(list_to_array(dblb), c[1], c[0]) >= 1)
                 {
-                    printf("ENTERING FORWARD B : \n");
+                    // printf("ENTERING FORWARD B : \n");
                     int     b = ft_forwardB(dbla, dblb, c, c[0], 0);
                     while (--b)
                         do_rra(dbla, dblb);
-                    printf("END OF FORWARD B\n");
+                    // printf("END OF FORWARD B\n");
                 }
                 else
                 {
-                    printf("ENTERING BACKWARD B : \n");
+                    // printf("ENTERING BACKWARD B : \n");
                     int     b = ft_backwardB(dbla, dblb, c, c[0], 0);
                     while (--b)
                     
                         do_rra(dbla, dblb);
-                    printf("END OF BACKWARD B\n");
+                    // printf("END OF BACKWARD B\n");
                 }
             }
         else
@@ -164,9 +165,11 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             i++;
         }
     }
+    while (j--)
+        do_rra(dbla, dblb);
     while (dblb->first)
         do_pa(dbla, dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
     free(a);
     free(b);
 }
@@ -284,31 +287,32 @@ int     main(int argc, char **argv)
     // ft_cinq_split(&coor, dbla, dblb);
     // ft_six_split(&coor, dbla, dblb);
     // ft_sept_split(&coor, dbla, dblb);
-    argc = 500;
-    while (ft_dblist_size(dbla) > (argc - 1) / 24)
-        ft_splitter(dbla, dblb, argc, argc - 1 - (4 * ft_dblist_size(dbla) / 5));
-    while (ft_dblist_size(dblb) > (argc - 1) / 4)
-        ft_splitterb(dbla, dblb, argc, argc - 1 - (9 / 10 * ft_dblist_size(dblb)));
-    while (ft_dblist_size(dblb) > 1)
-        ft_splitterbdeux(dbla, dblb, argc, argc - 1 - (3 / 4 * ft_dblist_size(dblb)));
-    ft_decoupage(&coor, dbla, dblb, ft_dblist_size(dbla));
-    ft_do(dbla, dblb, &coor);
+    argc = 100;
+    display_lists(dbla, dblb);
+    if (ft_dblist_size(dbla) > 5)
+    {
+        ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 8, 12);
+        // while (ft_dblist_size(dblb) > argc / 2)
+        //     ft_splitterb(dbla, dblb, argc, ft_dblist_size(dblb) / 3, 3);
+        // while (ft_dblist_size(dblb) > 40)
+            // ft_splitterb(dbla, dblb, argc, ft_dblist_size(dblb) / 3, 9);
+        // ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 8, 6);
+        // ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 8, 12);
+        // while (ft_dblist_size(dblb) > 1)
+        //     ft_splitterbdeux(dbla, dblb, argc, 3 * ft_dblist_size(dblb) / 4, 12);
+        // ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 3, 2);
+        // ft_decoupage(&coor, dbla, dblb, ft_dblist_size(dbla));
+        ft_do(dbla, dblb, &coor);
+    }
+    else
+        sort_five_numbers(dbla, dblb);
     p_list *a;
     p_list *b;
     a = dbla->first;
     b = dblb->first;
-    while (a)
-    {
-        // printf("%d ", a->content);
-        a = a->next;
-    }
-    // printf("\n");
-    while (b)
-    {
-        // printf("%d ", b->content);
-        
-        b = b->next;
-    }
-    printf("prout");
+    // while (dbla->first->content != 1)
+    //     do_ra(dbla, dblb);
+    // printf("prout");
+    display_lists(dbla, dblb);
     return (0);
 }

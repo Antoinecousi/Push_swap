@@ -47,7 +47,14 @@ typedef struct      p_coor
     int     fouHuitieme;
 }                   p_coor;
 
-int    ft_splitterbdeux(dblist *dbla, dblist *dblb, int size, int until);
+int	    utils_sort_three(dblist *dbla, dblist *dblb);
+void	a_bigger_than_b(dblist *dbla, dblist *dblb);
+void	sort_three_numbers(dblist *dbla, dblist *dblb);
+void    move_smallest_nbr_to_top(dblist *dbla, dblist *dblb, int size);
+void	sort_five_numbers(dblist *dbla, dblist *dblb);
+void	choose_sort_stack(dblist *dbla, dblist *dblb);
+int     ft_get_med_div_b(int *tab, int div_med);
+int     ft_splitterbdeux(dblist *dbla, dblist *dblb, int size, int until, int div_med);
 int     ft_get_med_div(int *tab, int div_med);
 int     *ft_tab_reducer(int lenght, int *tab);
 int     ft_is_croissant(dblist *dbla);
@@ -58,8 +65,10 @@ int     topOrBottomHard(int *tab, int inter, int final);
 int     topOrBot(int *tab, int c);
 int     ft_take_inter(int *tab, int inter, int final);
 int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb, int size);
-int     ft_splitterb(dblist *dbla, dblist *dblb, int size, int until);
-int     ft_splitter(dblist *dbla, dblist *dblb, int size, int until);
+int     ft_get_med_div_b(int *tab, int div_med);
+int     ft_splitterb(dblist *dbla, dblist *dblb, int size, int until, int div_med);
+int     ft_get_med_div_b(int *tab, int div_med);
+int     ft_splitter(dblist *dbla, dblist *dblb, int size, int until, int div_med);
 int     ft_get_huitieme(int *tab);
 int     ft_get_secondhuitieme(int *tab);
 int     ft_get_thirdhuitieme(int *tab);

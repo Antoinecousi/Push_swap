@@ -21,8 +21,8 @@ int     ft_decoupage(p_coor *coor, dblist *dbla, dblist *dblb, int size)
     ft_recursiveshit(coor, dbla, dblb);
     // while (ft_dblist_size(dbla) > 50)
     //         total += ft_splitter(coor, dbla, dblb);
-    printf("ITS THE END OF THE SPLITTING \n");
-    printf("total is equal = %d\n", total);
+    // printf("ITS THE END OF THE SPLITTING \n");
+    // printf("total is equal = %d\n", total);
     return (1);
 }
 
@@ -55,10 +55,10 @@ int     ft_recursiveshit(p_coor *coor, dblist *dbla, dblist *dblb)
 
     size = ft_dblist_size(dbla);
     i = 0;
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
     coor->med = ft_get_med(list_to_array(dbla));
     int b = 0;
-    printf("valeur de mediane = %d ///// size = %d \n", coor->med, size);
+    // printf("valeur de mediane = %d ///// size = %d \n", coor->med, size);
     while (b < size / 2 && ft_dblist_size(dbla) > 2)
     {
         i++;
@@ -72,7 +72,7 @@ int     ft_recursiveshit(p_coor *coor, dblist *dbla, dblist *dblb)
     }
     if (ft_dblist_size(dbla) > 2 && ft_is_croissant(dbla))
         ft_recursiveshit(coor, dbla, dblb);
-    printf("My next chunk is : %d !!\n", b);
+    // printf("My next chunk is : %d !!\n", b);
     ft_secondrecurs(coor, dbla, dblb, b, coor->med);
     return (1);
 }
@@ -117,7 +117,7 @@ int     ft_secondrecurs(p_coor *coor, dblist *dbla, dblist *dblb, int size, int 
     return (78);
 }
 
-int    ft_splitter(dblist *dbla, dblist *dblb, int size, int until)
+int    ft_splitter(dblist *dbla, dblist *dblb, int size, int until, int div_med)
 {
     int     size_list;
     int     i;
@@ -125,14 +125,14 @@ int    ft_splitter(dblist *dbla, dblist *dblb, int size, int until)
 
     size_list = ft_dblist_size(dbla);
     i = 0;
-    display_lists(dbla, dblb);
-    med = ft_get_med_div(list_to_array(dbla), 2);
+    // display_lists(dbla, dblb);
     int b = 0;
-    printf("valeur de mediane = %d ///// size_list = %d \n", med, size_list);
-    while (b < until)
+    while (ft_dblist_size(dbla) > 25)
     {
+        med = ft_get_med_div(list_to_array(dbla), div_med);
+        // printf("valeur de mediane = %d ///// size_list = %d et de until : %d \n", med, size_list, until);
         i++;
-        if (dbla->first->content < med)
+        if (dbla->first->content <= med)
         {
             do_pb(dbla, dblb);
             b++;    
@@ -140,24 +140,26 @@ int    ft_splitter(dblist *dbla, dblist *dblb, int size, int until)
         else
             do_ra(dbla, dblb);
     }
-    printf("A Chunk size is %d\n", b);
-    return (i);
+    // printf("A Chunk size is %d\n", b);
+    return (i); 
 }
 
-int    ft_splitterb(dblist *dbla, dblist *dblb, int size, int until)
+int    ft_splitterb(dblist *dbla, dblist *dblb, int size, int until, int div_med)
 {
     int     size_list;
     int     i;
     int     med;
 
     size_list = ft_dblist_size(dblb);
+    med = ft_get_med_div_b(list_to_array(dblb), div_med);
+    // printf("valeur de mediane = %d ///// size = %d et de until : %d \n", med, size_list, until);
     i = 0;
-    display_lists(dbla, dblb);
-    med = ft_get_med_div(list_to_array(dblb), 10);
+    // display_lists(dbla, dblb);
     int b = 0;
-    printf("valeur de mediane = %d ///// size = %d \n", med, size);
     while (b < until)
     {
+        med = ft_get_med_div_b(list_to_array(dblb), div_med);
+        // printf("valeur de mediane = %d ///// size = %d et de until : %d \n", med, size_list, until);
         if (dblb->first->content > med)
         {
             do_pa(dbla, dblb);
@@ -167,11 +169,11 @@ int    ft_splitterb(dblist *dbla, dblist *dblb, int size, int until)
             do_rb(dbla, dblb);
         i++;
     }
-    printf("B Chunk size is %d\n", b);
+    // printf("B Chunk size is %d\n", b);
     return (i);
 }
 
-int    ft_splitterbdeux(dblist *dbla, dblist *dblb, int size, int until)
+int    ft_splitterbdeux(dblist *dbla, dblist *dblb, int size, int until, int div_med)
 {
     int     size_list;
     int     i;
@@ -179,12 +181,14 @@ int    ft_splitterbdeux(dblist *dbla, dblist *dblb, int size, int until)
 
     size_list = ft_dblist_size(dblb);
     i = 0;
-    display_lists(dbla, dblb);
-    med = ft_get_med_div(list_to_array(dblb), 4);
+    // display_lists(dbla, dblb);
     int b = 0;
-    printf("valeur de mediane = %d ///// size = %d \n", med, size);
+    med = ft_get_med_div_b(list_to_array(dblb), div_med);
+    // printf("valeur de mediane = %d ///// size = %d et de until : %d \n", med, size_list, until);
     while (b < until)
     {
+        med = ft_get_med_div_b(list_to_array(dblb), div_med);
+        // printf("valeur de mediane = %d ///// size = %d et de until : %d \n", med, size_list, until);
         if (dblb->first->content > med)
         {
             do_pa(dbla, dblb);
@@ -194,7 +198,7 @@ int    ft_splitterbdeux(dblist *dbla, dblist *dblb, int size, int until)
             do_rb(dbla, dblb);
         i++;
     }
-    printf("B Chunk size is %d\n", b);
+    // printf("B Chunk size is %d\n", b);
     return (i);
 }
 

@@ -7,8 +7,8 @@ void    ft_first_split(p_coor *coor, dblist *dbla, dblist *dblb)
 
     size = ft_dblist_size(dbla);
     i = 0;
-    display_lists(dbla, dblb);
-    printf(" ------ \n %d is my lower med \n", coor->Huitieme);
+    // display_lists(dbla, dblb);
+    // printf(" ------ \n %d is my lower med \n", coor->Huitieme);
     while (i++ < size)
     {
         if (dbla->first->content < coor->Huitieme)
@@ -25,8 +25,8 @@ void    ft_second_split(p_coor *coor, dblist *dbla, dblist *dblb)
 
     size = ft_dblist_size(dbla);
     i = 0;
-    display_lists(dbla, dblb);
-    printf("%d is my med \n", coor->lowerMed);
+    // display_lists(dbla, dblb);
+    // printf("%d is my med \n", coor->lowerMed);
     while (i++ < size)
     {
         if (dbla->first->content < coor->lowerMed)
@@ -44,9 +44,9 @@ void    ft_third_split(p_coor *coor, dblist *dbla, dblist *dblb)
 
     j = 0;
     size = ft_dblist_size(dbla);
-    printf("%d is my upper med \n", coor->secHuitieme);
+    // printf("%d is my upper med \n", coor->secHuitieme);
     i = 0;
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
     while (i++ < size)
     {
         if (dbla->first->content < coor->secHuitieme)
@@ -69,9 +69,9 @@ void    ft_quatre_split(p_coor *coor, dblist *dbla, dblist *dblb)
 
     j = 0;
     size = ft_dblist_size(dbla);
-    printf("%d is my upper med \n", coor->med);
+    // printf("%d is my upper med \n", coor->med);
     i = 0;
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
     while (i++ < size)
     {
         if (dbla->first->content < coor->med)
@@ -94,9 +94,9 @@ void    ft_cinq_split(p_coor *coor, dblist *dbla, dblist *dblb)
 
     j = 0;
     size = ft_dblist_size(dbla);
-    printf("%d is my upper med \n", coor->thiHuitieme);
+    // printf("%d is my upper med \n", coor->thiHuitieme);
     i = 0;
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
     while (i++ < size)
     {
         if (dbla->first->content < coor->thiHuitieme)
@@ -119,9 +119,9 @@ void    ft_six_split(p_coor *coor, dblist *dbla, dblist *dblb)
 
     j = 0;
     size = ft_dblist_size(dbla);
-    printf("%d is my upper med \n", coor->upperMed);
+    // printf("%d is my upper med \n", coor->upperMed);
     i = 0;
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
     while (i++ < size)
     {
         if (dbla->first->content < coor->upperMed)
@@ -144,9 +144,9 @@ void    ft_sept_split(p_coor *coor, dblist *dbla, dblist *dblb)
 
     j = 0;
     size = ft_dblist_size(dbla);
-    printf("%d is my upper med \n", coor->fouHuitieme);
+    // printf("%d is my upper med \n", coor->fouHuitieme);
     i = 0;
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
     while (i++ < size)
     {
         if (dbla->first->content < coor->fouHuitieme)

@@ -2,77 +2,77 @@
 
 void    do_ra(dblist *dbla, dblist *dblb)
 {
-    printf("RA        ");
+    printf("RA\n");
     ft_ra(dbla);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_rra(dblist *dbla, dblist *dblb)
 {
-    printf("RRA       ");
+    printf("RRA\n");
     ft_rra(dbla);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_rb(dblist *dbla, dblist *dblb)
 {
-    printf("RB        ");
+    printf("RB\n");
     ft_rb(dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_rrb(dblist *dbla, dblist *dblb)
 {
-    printf("RRB       ");
+    printf("RRB\n");
     ft_rrb(dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_pb(dblist *dbla, dblist *dblb)
 {
-    printf("PB        ");
+    printf("PB\n");
     ft_pb(dbla, dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_pa(dblist *dbla, dblist *dblb)
 {
-    printf("PA        ");
+    printf("PA\n");
     ft_pa(dbla, dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_rrr(dblist *dbla, dblist *dblb)
 {
-    printf("RRR       ");
+    printf("RRR\n");
     ft_rrr(dbla, dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_rr(dblist *dbla, dblist *dblb)
 {
-    printf("RR        ");
+    printf("RR\n");
     ft_rr(dbla, dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_ss(dblist *dbla, dblist *dblb)
 {
-    printf("SS        ");
+    printf("SS\n");
     ft_ss(dbla, dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_sa(dblist *dbla, dblist *dblb)
 {
-    printf("SA        ");
+    printf("SA\n");
     ft_sa(dbla);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }
 
 void    do_sb(dblist *dbla, dblist *dblb)
 {
-    printf("SB        ");
+    printf("SB\n");
     ft_sb(dblb);
-    display_lists(dbla, dblb);
+    // display_lists(dbla, dblb);
 }

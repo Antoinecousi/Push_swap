@@ -6,7 +6,7 @@
 /*   By: acousini <acousini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:16:43 by acousini          #+#    #+#             */
-/*   Updated: 2021/11/16 17:49:08 by acousini         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:03:47 by acousini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int     ft_next_seeked(int *tab, int c)
     // printf("RESULTAT DU NEXT UPPPER : %d \n", i / pos);
     if (!pos)
         return (0);
-    printf("prochain pos de lower : %d      donc i / pos = %d \n", pos, i / pos);
+    // printf("prochain pos de lower : %d      donc i / pos = %d \n", pos, i / pos);
 return (i / pos);
 }
 
@@ -77,7 +77,7 @@ int     ft_next_lower(int *tab)
         }
         i++;
     }
-    printf("prochain lower : %d \n", lower);
+    // printf("prochain lower : %d \n", lower);
     // printf("RESULTAT DU NEXT UPPPER : %d \n", i / pos);
     if (!pos)
         return (0);
@@ -105,7 +105,7 @@ int     ft_next_upper(int *tab)
         i++;
     }
     stop = pos;
-    printf("prochain lower : %d \n", lower);
+    // printf("prochain lower : %d \n", lower);
     if (stop == 0)
         return (0);
     // printf("RESULTAT DU NEXT UPPPER : %d \n", i / stop);
@@ -131,7 +131,7 @@ int     ft_next_lower_bis(int *tab, int c)
         }
         i++;
     }
-    printf("prochain lower : %d \n", lower);
+    // printf("prochain lower : %d \n", lower);
     // printf("RESULTAT DU NEXT UPPPER : %d \n", i / pos);
     if (!pos)
         return (0);
@@ -162,6 +162,20 @@ int     ft_get_med_div(int *tab, int div_med)
     return (tab[(i - 1) / div_med]);
 }
 
+int     ft_get_med_div_b(int *tab, int div_med)
+{
+    int     i;
+    
+    i = 0;
+    while (tab[i])
+    {
+        i++;
+    }
+    tab = ft_bubble(tab);
+    // printf("MA MED POUR DIV MED = %d   ET MON MED = %d\n", div_med, tab[size_array(tab) - ((i - 1) / div_med)]);
+    return (tab[size_array(tab) - ((i - 1) / div_med)]);
+}
+
 void    ft_init_coor(p_coor coor)
 {
     coor.first = INT_MAX;
@@ -186,7 +200,7 @@ void    ft_fill_stack(char **argv, dblist *dbla)
     i = 0;
     while (argv[i])
     {
-        val = ft_atoi(argv[i]);
+        val = atoi(argv[i]);
         ft_addbacklist(dbla, val); 
         i++;
     }
@@ -226,7 +240,7 @@ int     ft_get_quarter(int *tab)
     i = 0;
     while (tab[i++])
     tab = ft_bubble(tab);
-    printf("%d et %d \n", tab[(i - 1) / 4], (i - 1) / 4);
+    // printf("%d et %d \n", tab[(i - 1) / 4], (i - 1) / 4);
     return (tab[(i - 1) / 4]);
 }
 
@@ -237,7 +251,7 @@ int     ft_get_secondhuitieme(int *tab)
     i = 0;
     while (tab[i++])
     tab = ft_bubble(tab);
-    printf("%d et %d \n", tab[(i - 1) / 4 + (i - 1) / 8], (i - 1) / 4 + (i - 1) / 8);
+    // printf("%d et %d \n", tab[(i - 1) / 4 + (i - 1) / 8], (i - 1) / 4 + (i - 1) / 8);
     return (tab[(i - 1) / 4 + (i - 1) / 8]);
 }
 
@@ -259,7 +273,7 @@ int     ft_get_thirdhuitieme(int *tab)
     i = 0;
     while (tab[i++])
     tab = ft_bubble(tab);
-    printf("%d et %d \n", tab[(i - 1) / 2 + (i - 1) / 8], (i - 1) / 2 + (i - 1) / 8);
+    // printf("%d et %d \n", tab[(i - 1) / 2 + (i - 1) / 8], (i - 1) / 2 + (i - 1) / 8);
     return (tab[(i - 1) / 2 + (i - 1) / 8]);
 }
 
@@ -339,13 +353,13 @@ int     *ft_reverse_tab(int *tab)
     size = size_array(tab) - 1;
     copy = malloc(8 * size + 9);
     i = 0;
-    printf("Here's my not tab      : ");
-    while (i < size)
-    {
-        printf("%d ", tab[i]);
-        i++;
-    }
-    printf("\n");
+    // printf("Here's my not tab      : ");
+    // while (i < size)
+    // {
+    //     printf("%d ", tab[i]);
+    //     i++;
+    // }
+    // ("\n");
     i = 1;
     copy[0] = tab[0];
     while (i < size)
@@ -356,13 +370,13 @@ int     *ft_reverse_tab(int *tab)
     }
     copy[i] = '\0';
     i = 0;
-    printf("Here's my reversed tab : ");
+    // printf("Here's my reversed tab : ");
     while (copy[i])
     {
-        printf("%d ", copy[i]);
+        // printf("%d ", copy[i]);
         i++;
     }
-    printf("\n");
+    // printf("\n");
     return (copy);
 }
 
@@ -371,7 +385,7 @@ p_coor  ft_fill_coor(p_coor coor, dblist *dbl)
     int     i;
     int     *tab;
 
-    printf("COUCOU\n");
+    // printf("COUCOU\n");
     i = 0;
     tab = list_to_array(dbl);
     coor.med = ft_get_med(tab);
