@@ -24,12 +24,10 @@ void	a_bigger_than_b(dblist *dbla, dblist *dblb)
 		do_rra(dbla, dblb);
 	}
 	else
-	{
 		if (dbla->first->content > dbla->first->next->next->content)
 			do_ra(dbla, dblb);
 		else
 			do_sa(dbla, dblb);
-	}
 }
 
 void	sort_three_numbers(dblist *dbla, dblist *dblb)
@@ -52,7 +50,27 @@ void	sort_three_numbers(dblist *dbla, dblist *dblb)
 	}
 }
 
-void	move_smallest_nbr_to_top(dblist *dbla, dblist *dblb, int size)
+void	move_four(dblist *dbla, dblist *dblb, int size)
+{
+    int     *tab;
+    int     *bubbled;
+
+    tab = list_to_array(dbla);
+    bubbled = ft_bubble(tab);
+	if (bubbled[0] == tab[3])
+    {
+        do_rra(dbla, dblb);
+        do_pb(dbla, dblb);
+    }
+    else
+        while (ft_dblist_size(dbla) > 3)
+            if (dbla->first->content == bubbled[0])
+                do_pb(dbla, dblb);
+            else
+                do_ra(dbla, dblb);
+}
+
+void	move_five(dblist *dbla, dblist *dblb, int size)
 {
     int     *tab;
     int     *bubbled;
@@ -76,10 +94,12 @@ void	move_smallest_nbr_to_top(dblist *dbla, dblist *dblb, int size)
                 do_ra(dbla, dblb);
 }
 
-void	sort_five_numbers(dblist *dbla, dblist *dblb)
+void	sort_one_to_five(dblist *dbla, dblist *dblb)
 {
-	while (ft_dblist_size(dbla) > 3 && ft_same(dbla, ft_bubble(list_to_array(dbla))))
-		move_smallest_nbr_to_top(dbla, dblb, ft_dblist_size(dbla));
+	while (ft_dblist_size(dbla) == 4 && ft_same(dbla, ft_bubble(list_to_array(dbla))))
+		move_four(dbla, dblb, ft_dblist_size(dbla));
+	while (ft_dblist_size(dbla) == 5 && ft_same(dbla, ft_bubble(list_to_array(dbla))))
+		move_five(dbla, dblb, ft_dblist_size(dbla));
 	sort_three_numbers(dbla, dblb);
 	while (ft_dblist_size(dblb) > 0 && ft_dblist_size(dbla) < 5)
 		do_pa(dbla, dblb);
@@ -87,14 +107,12 @@ void	sort_five_numbers(dblist *dbla, dblist *dblb)
 		do_sa(dbla, dblb);
 }
 
-void	choose_sort_stack(dblist *dbla, dblist *dblb)
+void	choose_sort_stack(dblist *dbla, dblist *dblb, p_coor *coor)
 {
 	if (ft_dblist_size(dbla) <= 3)
 		sort_three_numbers(dbla, dblb);
 	else if (ft_dblist_size(dbla) > 3 && ft_dblist_size(dbla) <= 5)
-		sort_five_numbers(dbla, dblb);
-	// else if (ft_dblist_size(dbla) > 5 && ft_dblist_size(dbla) <= 500)
-	// 	sort_more_than_five_numbers(dbla, dblb);
+		sort_one_to_five(dbla, dblb);
 	else
-		return ;
+		ft_do(dbla, dblb, coor);
 }

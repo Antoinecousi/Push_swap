@@ -6,7 +6,7 @@
 /*   By: acousini <acousini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:16:43 by acousini          #+#    #+#             */
-/*   Updated: 2021/11/18 17:03:47 by acousini         ###   ########.fr       */
+/*   Updated: 2021/11/23 12:44:48 by acousini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void    ft_init_coor(p_coor coor)
     coor.fouHuitieme = 0;
 }
 
-void    ft_fill_stack(char **argv, dblist *dbla)
+int     ft_fill_stack(char **argv, dblist *dbla)
 {
     int     val;
     int     i;
@@ -204,6 +204,7 @@ void    ft_fill_stack(char **argv, dblist *dbla)
         ft_addbacklist(dbla, val); 
         i++;
     }
+    return (i);
 }
 
 

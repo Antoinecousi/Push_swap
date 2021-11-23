@@ -91,7 +91,7 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             i++;
         }
     }
-    sort_five_numbers(dbla, dblb);
+    sort_one_to_five(dbla, dblb);
     // ft_lowSampleSort(dbla, dblb, &coor);
     while (j-- > 0)
         do_rrb(dbla, dblb);
@@ -254,7 +254,6 @@ int     *list_to_array(dblist *dbl)
 
 int     main(int argc, char **argv)
 {   
-
     p_coor  coor;
     dblist *dbla;
     dblist *dblb;
@@ -270,49 +269,22 @@ int     main(int argc, char **argv)
     if (argc == 2)
     {
         splited = ft_split(argv[1], ' ');
-        ft_fill_stack(splited, dbla);
+        argc = ft_fill_stack(splited, dbla);
+        argc++;
     }
     else
         ft_fill_stack(argv + 1, dbla);
-    //ft_fill_coor(&coor, argv, argc);
-    //list_to_array(dbla);
+    argc -= 1;
     ft_fill_first_coor(&coor, dbla);
-    // if (argc > 4)
-    // {
-    //    ft_pretri(&coor, dbla, dblb);
-    // ft_first_split(&coor, dbla, dblb);
-    // ft_second_split(&coor, dbla, dblb);
-    // ft_third_split(&coor, dbla, dblb);
-    // ft_quatre_split(&coor, dbla, dblb);
-    // ft_cinq_split(&coor, dbla, dblb);
-    // ft_six_split(&coor, dbla, dblb);
-    // ft_sept_split(&coor, dbla, dblb);
-    argc = 100;
     display_lists(dbla, dblb);
+    choose_sort_stack(dbla, dblb, &coor);
     if (ft_dblist_size(dbla) > 5)
     {
         ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 8, 12);
-        // while (ft_dblist_size(dblb) > argc / 2)
-        //     ft_splitterb(dbla, dblb, argc, ft_dblist_size(dblb) / 3, 3);
-        // while (ft_dblist_size(dblb) > 40)
-            // ft_splitterb(dbla, dblb, argc, ft_dblist_size(dblb) / 3, 9);
-        // ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 8, 6);
-        // ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 8, 12);
-        // while (ft_dblist_size(dblb) > 1)
-        //     ft_splitterbdeux(dbla, dblb, argc, 3 * ft_dblist_size(dblb) / 4, 12);
-        // ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 3, 2);
-        // ft_decoupage(&coor, dbla, dblb, ft_dblist_size(dbla));
         ft_do(dbla, dblb, &coor);
     }
     else
-        sort_five_numbers(dbla, dblb);
-    p_list *a;
-    p_list *b;
-    a = dbla->first;
-    b = dblb->first;
-    // while (dbla->first->content != 1)
-    //     do_ra(dbla, dblb);
-    // printf("prout");
+        sort_one_to_five(dbla, dblb);
     display_lists(dbla, dblb);
     return (0);
 }
