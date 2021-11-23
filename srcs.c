@@ -6,7 +6,7 @@
 /*   By: acousini <acousini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:16:43 by acousini          #+#    #+#             */
-/*   Updated: 2021/11/23 12:44:48 by acousini         ###   ########.fr       */
+/*   Updated: 2021/11/23 17:46:49 by acousini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,22 +174,6 @@ int     ft_get_med_div_b(int *tab, int div_med)
     tab = ft_bubble(tab);
     // printf("MA MED POUR DIV MED = %d   ET MON MED = %d\n", div_med, tab[size_array(tab) - ((i - 1) / div_med)]);
     return (tab[size_array(tab) - ((i - 1) / div_med)]);
-}
-
-void    ft_init_coor(p_coor coor)
-{
-    coor.first = INT_MAX;
-    coor.last = INT_MIN;
-    coor.posFirst = 0;
-    coor.med = 0;
-    coor.posMed = 0;
-    coor.posLast = 0;
-    coor.upperMed = 0;
-    coor.lowerMed = 0;
-    coor.Huitieme = 0;
-    coor.secHuitieme = 0;
-    coor.thiHuitieme = 0;
-    coor.fouHuitieme = 0;
 }
 
 int     ft_fill_stack(char **argv, dblist *dbla)
@@ -402,8 +386,6 @@ p_coor  ft_fill_coor(p_coor coor, dblist *dbl)
             coor.last = tab[i];
             coor.posLast = i + 1;
         }
-        if (tab[i] == coor.med)
-            coor.posMed = i + 1;
         i++;
     }
     // coor = ft_fill_coor_alt(coor, tab);

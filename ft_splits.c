@@ -66,21 +66,23 @@ void    ft_quatre_split(p_coor *coor, dblist *dbla, dblist *dblb)
     int     size;
     int     i;
     int     j;
+    int     med;
 
     j = 0;
     size = ft_dblist_size(dbla);
-    // printf("%d is my upper med \n", coor->med);
+    printf("%d is my upper med \n", coor->med);
     i = 0;
-    // display_lists(dbla, dblb);
-    while (i++ < size)
+    med = ft_get_med(ft_bubble(list_to_array(dbla)));
+    while (j <= size / 2 && i - 1 < size)
     {
-        if (dbla->first->content < coor->med)
+        if (dbla->first->content < med)
         {
             do_pb(dbla, dblb);
             j++;
         }
         else
             do_ra(dbla, dblb);
+        i++;
     }
     // while (j--)
     //     do_pa(dbla, dblb);

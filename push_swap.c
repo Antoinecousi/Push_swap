@@ -11,7 +11,7 @@ i_coor  init_ins(i_coor ins)
 }
 
 void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
-{
+{   
     int     *a;
     int     *b;
     int     *c;
@@ -91,7 +91,7 @@ void    ft_do(dblist *dbla, dblist *dblb, p_coor *coor)
             i++;
         }
     }
-    sort_one_to_five(dbla, dblb);
+    choose_sort_stack(dbla, dblb, coor);
     // ft_lowSampleSort(dbla, dblb, &coor);
     while (j-- > 0)
         do_rrb(dbla, dblb);
@@ -252,18 +252,17 @@ int     *list_to_array(dblist *dbl)
     return (tab);
 }
 
-int     main(int argc, char **argv)
+int         main(int argc, char **argv)
 {   
     p_coor  coor;
-    dblist *dbla;
-    dblist *dblb;
+    dblist  *dbla;
+    dblist  *dblb;
 
     dbla = malloc(1000000);
     dblb = malloc(1000000);
     char **splited = NULL;
     // if (ft_checker(argv, argc))
     //    return (ft_error);
-    ft_init_first_coor(&coor);
     ft_init_dblist(dbla);
     ft_init_dblist(dblb);
     if (argc == 2)
@@ -274,17 +273,20 @@ int     main(int argc, char **argv)
     }
     else
         ft_fill_stack(argv + 1, dbla);
+    ft_init_first_coor(&coor, argc);
     argc -= 1;
     ft_fill_first_coor(&coor, dbla);
     display_lists(dbla, dblb);
+    // choose_sort_stack(dbla, dblb, &coor);
+    printf("argc = %d\n", argc);
+    // if (ft_dblist_size(dbla) > 5)
+    // {
+    //     while (ft_dblist_size(dbla) > 5)
+    //         ft_splitter(dbla, dblb, argc, 5, 4);
+    //     ft_do(dbla, dblb, &coor);
+    // }
+    // else
     choose_sort_stack(dbla, dblb, &coor);
-    if (ft_dblist_size(dbla) > 5)
-    {
-        ft_splitter(dbla, dblb, argc, ft_dblist_size(dbla) / 8, 12);
-        ft_do(dbla, dblb, &coor);
-    }
-    else
-        sort_one_to_five(dbla, dblb);
     display_lists(dbla, dblb);
     return (0);
 }

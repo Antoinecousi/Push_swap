@@ -32,9 +32,7 @@ typedef struct  i_coor
 typedef struct      p_coor
 {
     int     med;
-    int     posMed;
-    int     tier;
-    int     postTier;
+    int     total;
     int     first;
     int     posFirst;
     int     last;
@@ -47,6 +45,8 @@ typedef struct      p_coor
     int     fouHuitieme;
 }                   p_coor;
 
+void    sort_more_one_hundred(dblist *dbla, dblist *dblb, p_coor *coor);
+void    sort_one_hundred(dblist *dbla, dblist *dblb, p_coor *coor);
 int	    utils_sort_three(dblist *dbla, dblist *dblb);
 void	a_bigger_than_b(dblist *dbla, dblist *dblb);
 void	sort_three_numbers(dblist *dbla, dblist *dblb);
@@ -118,7 +118,7 @@ int     ft_same(dblist *dbla, int *bubbled);
 int     ft_fill_stack(char **argv, dblist *dbla);
 void    ft_fill_first_coor_alt(p_coor *coor, int *tab);
 void    ft_fill_first_coor(p_coor *coor, dblist *dbl);
-void    ft_init_first_coor(p_coor *coor);
+void    ft_init_first_coor(p_coor *coor, int argc);
 int     *ft_bubble(int *tab);
 p_coor  ft_fill_coor(p_coor coor, dblist *dbl);
 p_coor  ft_fill_coor_alt(p_coor coor, int *tab);

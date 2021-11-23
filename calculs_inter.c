@@ -72,7 +72,7 @@ int     topOrBottomHard(int *tab, int inter, int final)
         result = topOrBottomHardBack(tab, inter, final);
     else
         result = topOrBottomHardFor(tab, inter, final);
-    return (result);
+    return (0);
 }
 
 int     ft_take_inter(int *tab, int inter, int final)
@@ -96,7 +96,6 @@ int     ft_take_inter(int *tab, int inter, int final)
         reader = ft_inter_calcul_backward(tab, i - 1, j - 1);
     if (j - 1 <= size)
         reader = ft_inter_calcul_forward(tab, i - 1, j - 1);
-    
     return (reader);
 }
 
@@ -136,7 +135,6 @@ int     ft_direction_after_inter(int *tab, int inter, int final)
 {
     int     index;
     int     size;
-    int     result;
     int     tmpInter;
     int     tmpFinal;
 

@@ -113,6 +113,8 @@ void	choose_sort_stack(dblist *dbla, dblist *dblb, p_coor *coor)
 		sort_three_numbers(dbla, dblb);
 	else if (ft_dblist_size(dbla) > 3 && ft_dblist_size(dbla) <= 5)
 		sort_one_to_five(dbla, dblb);
+	else if (ft_dblist_size(dbla) <= 100)
+		sort_one_hundred(dbla, dblb, coor);
 	else
-		ft_do(dbla, dblb, coor);
+		sort_more_one_hundred(dbla, dblb, coor);
 }
