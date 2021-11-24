@@ -43,7 +43,6 @@ void    ft_addbacklist(dblist *dbla, int val)
     a->content = val;
     a->prev = dbla->last;
     a->next = NULL;
-    //TO LOOK IN DETAIL
     if (dbla->last)
         dbla->last->next = a;
     else
@@ -75,12 +74,15 @@ void    display_lists(dblist *dbla, dblist *dblb)
     printf("\n");
 }
 
-void    display_tab(int *tab)
+void    display_tab(int *tab, int size)
 {
-    while (*tab)
+    int     i;
+
+    i = 0;
+    while (i < size)
     {
-        printf("%d ", *tab);
-        tab++;
+        printf("%d ", tab[i]);
+        i++;
     }
 }
 

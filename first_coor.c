@@ -20,13 +20,11 @@ void    ft_fill_first_coor(p_coor *coor, dblist *dbl)
 {
     int     i;
     int     *tab;
-    p_list  *a;
 
     i = 0;
     tab = list_to_array(dbl);
     i = 0;
-    coor->med = ft_get_med(tab);
-    // coor->tier = ft_get_tier(tab);
+    coor->med = ft_get_med(tab, ft_dblist_size(dbl));
     while (tab[i])
     {
         if (tab[i] < coor->first)
@@ -42,12 +40,6 @@ void    ft_fill_first_coor(p_coor *coor, dblist *dbl)
         i++;
     }
     ft_fill_first_coor_alt(coor, tab);
-    coor->lowerMed = ft_get_quarter(tab);
-    coor->upperMed = ft_get_thirdquarter(tab);
-    coor->Huitieme = ft_get_huitieme(tab);
-    coor->secHuitieme = ft_get_secondhuitieme(tab);
-    coor->thiHuitieme = ft_get_thirdhuitieme(tab);
-    coor->fouHuitieme = ft_get_fourthhuitieme(tab);
 }
 
 void    ft_fill_first_coor_alt(p_coor *coor, int *tab)

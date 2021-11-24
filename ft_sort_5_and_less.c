@@ -50,13 +50,13 @@ void	sort_three_numbers(dblist *dbla, dblist *dblb)
 	}
 }
 
-void	move_four(dblist *dbla, dblist *dblb, int size)
+void	move_four(dblist *dbla, dblist *dblb)
 {
     int     *tab;
     int     *bubbled;
 
     tab = list_to_array(dbla);
-    bubbled = ft_bubble(tab);
+    bubbled = ft_bubble(tab, ft_dblist_size(dbla));
 	if (bubbled[0] == tab[3])
     {
         do_rra(dbla, dblb);
@@ -70,13 +70,13 @@ void	move_four(dblist *dbla, dblist *dblb, int size)
                 do_ra(dbla, dblb);
 }
 
-void	move_five(dblist *dbla, dblist *dblb, int size)
+void	move_five(dblist *dbla, dblist *dblb)
 {
     int     *tab;
     int     *bubbled;
 
     tab = list_to_array(dbla);
-    bubbled = ft_bubble(tab);
+    bubbled = ft_bubble(tab, ft_dblist_size(dbla));
 	if ((bubbled[0] == tab[3] && bubbled[1] == tab[4]) 
     || (bubbled[0] == tab[4] && bubbled[1] == tab[3]))
     {
@@ -96,10 +96,10 @@ void	move_five(dblist *dbla, dblist *dblb, int size)
 
 void	sort_one_to_five(dblist *dbla, dblist *dblb)
 {
-	while (ft_dblist_size(dbla) == 4 && ft_same(dbla, ft_bubble(list_to_array(dbla))))
-		move_four(dbla, dblb, ft_dblist_size(dbla));
-	while (ft_dblist_size(dbla) == 5 && ft_same(dbla, ft_bubble(list_to_array(dbla))))
-		move_five(dbla, dblb, ft_dblist_size(dbla));
+	while (ft_dblist_size(dbla) == 4 && ft_same(dbla, ft_bubble(list_to_array(dbla), ft_dblist_size(dbla))))
+		move_four(dbla, dblb);
+	while (ft_dblist_size(dbla) == 5 && ft_same(dbla, ft_bubble(list_to_array(dbla), ft_dblist_size(dbla))))
+		move_five(dbla, dblb);
 	sort_three_numbers(dbla, dblb);
 	while (ft_dblist_size(dblb) > 0 && ft_dblist_size(dbla) < 5)
 		do_pa(dbla, dblb);
